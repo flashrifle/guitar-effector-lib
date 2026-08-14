@@ -73,13 +73,15 @@ effector['Electro Harmonix']['BIG MUFF PI']()
 ### 런타임 동작에서 알아둘 것
 
 - `brands`는 모듈 로드 시 1회만 만들어지고, `new GuitarEffector()`는 `Object.assign(this, brands)`로 참조만 붙인다. 인스턴스를 여러 개 만들어도 비용이 없고, 장비 함수 객체는 인스턴스 간 공유된다.
-- **검증 3종은 전부 모듈 로드 시점에 throw한다** — 해당 모델을 호출할 때가 아니라 `import` 자체가 실패한다. 중복 키, 잘못된 `type`, 노브가 있는 `cab` 세 가지.
+- **검증은 전부 모듈 로드 시점에 throw한다** — 해당 모델을 호출할 때가 아니라 `import` 자체가 실패한다. 중복 키, 구분자만 다른 모호한 키, 잘못된 `type`, 잘못된 `category`, 노브가 있는 `cab`.
 - `parameter`는 호출할 때마다 `[...gear.parameter]`로 복사해서 반환한다. 호출자가 배열을 변형해도 데이터가 오염되지 않아야 하며, 이 불변성은 테스트로 고정돼 있다.
 
 ## 설계 결정 (임의로 바꾸지 말 것)
 
 - **키는 camelCase가 아니라 전부 소문자.** `wayHuge`가 아니라 `wayhuge`. 사용자가 `effector.proco.rat2()`를 예시로 직접 줬고 출력값도 `company:'proco'`였기 때문에, 접근 경로와 반환값 표기를 일치시킨 것. "더 예쁘다"는 이유로 camelCase로 바꾸지 말 것.
-- **반환 객체 키는 정확히 4개**: `company`, `model`, `type`, `parameter`. 배열이지만 단수형 `parameter` — 사용자 예시 그대로. (원래 3개였고 앰프·캐비닛을 넣으면서 `type`을 추가한 것 — 배포 전이라 가능했던 변경)
+- **반환 객체 키는 5개**: `company`, `model`, `type`, `category`, `parameter`. 배열이지만 단수형 `parameter` — 사용자 예시 그대로. 3개(0.1.0 이전) → `type` 추가 → `category` 추가(0.2.0) 순으로 늘었다. **필드 추가는 minor지만 제거·개명은 major다.**
+- **`type`과 `category`는 축이 다르다.** `type`은 어떤 상자냐(pedal/amp/cab/rack), `category`는 신호에 뭘 하느냐(drive/comp/delay/...). 소비자가 아이콘·색·필터에 쓰는 건 `category`다. 앰프·캐비닛은 두 값이 같아서 `null` 처리가 필요 없다.
+- **`category`는 추측이 아니라 원본 섹션에서 유도했다.** Helix의 `Distortion Models`/`Delay Models`, QC의 `Guitar overdrive`/`Compressor` 같은 섹션명을 매핑한 것이다. 83개 중 68개가 자동 매칭됐고 나머지 15개는 직접 넣은 항목이라 손으로 분류했다. **새 장비를 추가할 때도 같은 기준을 쓸 것 — 임의로 붙이지 말 것.**
 - **`type`은 `pedal | amp | cab | rack` 넷.** `rack`은 스톰프박스가 아닌 실물 — Teletronix LA-2A, UA 1176, Eventide H3000, Leslie 122 같은 스튜디오·랙 장비다. 모델러가 이펙트로 묶어놨다고 해서 `pedal`로 넣지 말 것. LA-2A는 페달이 아니다.
 - **페달·앰프·캐비닛이 한 네임스페이스를 공유한다.** `effector.pedals.proco.rat2()`처럼 카테고리로 쪼개지 않는다. 사용자가 준 원래 사용 예시를 지키기 위한 선택이고, 구분은 `type` 필드와 `all(type)`으로 한다.
 - **캐비닛의 `parameter`는 항상 빈 배열.** 캐비닛엔 노브가 없다. 스피커 구성을 `parameter`에 욱여넣지 말 것 — 런타임이 이걸 검증해서 throw한다. 대신 사이즈와 스피커는 **`model`에 인코딩한다**: `"Basketweave 4x12 G12M-25"` → `basketweave4x12g12m25`. 안 그러면 Marshall Basketweave 3종(G12M-20/G12M-25/G12H-30)처럼 회사·모델이 같고 스피커만 다른 캐비닛들이 같은 키로 충돌한다.
@@ -90,7 +92,7 @@ effector['Electro Harmonix']['BIG MUFF PI']()
 
 ## 장비 추가 시 (테스트가 깨지는 지점)
 
-1. `src/data/gear.json`에 `{ "company": "...", "model": "...", "type": "pedal|amp|cab", "parameter": [...] }` 추가
+1. `src/data/gear.json`에 `{ "company": "...", "model": "...", "type": "pedal|amp|cab|rack", "category": "drive|comp|...", "parameter": [...] }` 추가
 2. `npm run build:types`
 3. `npm test`
 

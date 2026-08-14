@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { GuitarEffector, GEAR_TYPES, gear } from '../src/index.js';
+import { GuitarEffector, GEAR_TYPES, GEAR_CATEGORIES, gear, formatParameter } from '../src/index.js';
 import { toCompanyKey, toModelKey } from '../src/normalize.js';
 
 test('matches the exact requested usage: effector.proco.rat2()', () => {
@@ -10,22 +10,71 @@ test('matches the exact requested usage: effector.proco.rat2()', () => {
     company: 'proco',
     model: 'rat2',
     type: 'pedal',
+    category: 'drive',
     parameter: ['distortion', 'filter', 'volume'],
   });
 });
 
-test('every entry carries a type, and the shape is exactly four keys', () => {
+test('every entry carries a type, and the shape is exactly five keys', () => {
   const effector = new GuitarEffector();
   for (const gear of effector.all()) {
     assert.deepEqual(
       Object.keys(gear).sort(),
-      ['company', 'model', 'parameter', 'type'],
+      ['category', 'company', 'model', 'parameter', 'type'],
       `${gear.company}.${gear.model} has an unexpected shape`,
     );
     assert.ok(
       ['pedal', 'amp', 'cab', 'rack'].includes(gear.type),
       `${gear.company}.${gear.model} has invalid type "${gear.type}"`,
     );
+  }
+});
+
+test('every entry carries a category, on a different axis than type', () => {
+  const effector = new GuitarEffector();
+  for (const item of effector.all()) {
+    assert.ok(
+      GEAR_CATEGORIES.includes(item.category),
+      `${item.company}.${item.model} has invalid category "${item.category}"`,
+    );
+  }
+  // type says what the box is; category says what it does to the signal.
+  assert.equal(effector.proco.rat2().category, 'drive');
+  assert.equal(effector.boss.cs3().category, 'comp');
+  assert.equal(effector.boss.dm2().category, 'delay');
+  assert.equal(effector.mxr.phase_90().category, 'modulation');
+  assert.equal(effector.dunlop.crybaby().category, 'wah');
+  // amps and cabs mirror their type, so callers never see a null category
+  assert.equal(effector.marshall.jcm800_2203().category, 'amp');
+  assert.equal(effector.marshall.basketweave_4x12_g12m25().category, 'cab');
+});
+
+test('formatParameter restores panel-style labels from the stored keys', () => {
+  // Word boundaries survive in the stored camelCase; casing does not.
+  assert.equal(formatParameter('distortion'), 'Distortion');
+  assert.equal(formatParameter('repeatRate'), 'Repeat Rate');
+  assert.equal(formatParameter('midFreq'), 'Mid Freq');
+  assert.equal(formatParameter('cleanVolume'), 'Clean Volume');
+  // Acronyms would otherwise come back as "Hf Drive" / "Graphic Eq".
+  assert.equal(formatParameter('hfDrive'), 'HF Drive');
+  assert.equal(formatParameter('odIn'), 'OD In');
+  assert.equal(formatParameter('graphicEq'), 'Graphic EQ');
+  assert.equal(formatParameter('vle'), 'VLE');
+  assert.equal(formatParameter('fac'), 'FAC');
+  // Roman numerals and digits keep their own boundaries.
+  assert.equal(formatParameter('volumeI'), 'Volume I');
+  assert.equal(formatParameter('lead1Drive'), 'Lead 1 Drive');
+  assert.equal(formatParameter('oct2'), 'Oct 2');
+});
+
+test('every stored knob name formats to something non-empty', () => {
+  const effector = new GuitarEffector();
+  for (const item of effector.all()) {
+    for (const knob of item.parameter) {
+      const label = formatParameter(knob);
+      assert.ok(label.length > 0, `${knob} formatted to nothing`);
+      assert.doesNotMatch(label, /\s{2,}/, `${knob} → "${label}" has doubled spaces`);
+    }
   }
 });
 

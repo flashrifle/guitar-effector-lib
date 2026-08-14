@@ -13,6 +13,7 @@ console.log('내 디스토션 페달 :', rat2);
 //   company: 'proco',
 //   model: 'rat2',
 //   type: 'pedal',
+//   category: 'drive',
 //   parameter: [ 'distortion', 'filter', 'volume' ]
 // }
 ```
@@ -28,7 +29,7 @@ npm install guitar-effector
 ## API
 
 ```js
-effector.<company>.<model>()   // → { company, model, type, parameter }
+effector.<company>.<model>()   // → { company, model, type, category, parameter }
 
 effector.listCompanies()        // → ['proco', 'boss', 'ibanez', ...]
 effector.listModels('boss')     // → ['ds1', 'sd1', 'bd2', 'ce2', 'dm2', 'cs3']
@@ -64,9 +65,43 @@ import raw from 'guitar-effector/gear.json' with { type: 'json' };
 
 (import attributes는 Node 22+가 `with`, 그 이전은 `assert`예요.)
 
+### `category` — 신호에 뭘 하는지
+
+`type`이 "어떤 상자냐"라면 `category`는 "신호에 뭘 하느냐"예요. 축이 다릅니다.
+
+```js
+effector.proco.rat2()      // type: 'pedal',  category: 'drive'
+effector.boss.dm2()        // type: 'pedal',  category: 'delay'
+effector.dunlop.crybaby()  // type: 'pedal',  category: 'wah'
+effector.teletronix.la2a() // type: 'rack',   category: 'comp'
+```
+
+값은 `drive` · `comp` · `delay` · `reverb` · `modulation` · `eq` · `filter` · `wah` · `pitch` · `volume` · `amp` · `cab` 열두 가지예요 (`GEAR_CATEGORIES`로도 가져올 수 있어요). **앰프와 캐비닛은 `type`과 같은 값**이라 `null`을 처리할 일이 없어요.
+
+```js
+import { gear } from 'guitar-effector';
+const drives = gear.filter((g) => g.category === 'drive');   // 49종
+```
+
+### 노브 이름을 화면에 뿌릴 때
+
+저장된 키는 매칭용이라 소문자·camelCase예요. 패널 표기로 바꾸려면 `formatParameter`를 쓰세요.
+
+```js
+import { formatParameter } from 'guitar-effector';
+
+effector.boss.dm2().parameter.map(formatParameter);
+// ['Repeat Rate', 'Echo', 'Intensity']
+
+formatParameter('hfDrive');    // 'HF Drive'
+formatParameter('graphicEq');  // 'Graphic EQ'
+```
+
+단어 경계는 저장된 camelCase에 남아 있어서 그대로 복원되고, 대소문자만 재구성해요. 약어(HF·OD·EQ·VLE·VPF·DI·IR·AGS)는 목록으로 처리합니다 — 규칙으로는 `od`와 `on`을 구분할 방법이 없어서요.
+
 ### `type`
 
-`'pedal'`, `'amp'`, `'cab'`, `'rack'` 중 하나예요. `rack`은 Teletronix LA-2A처럼 스톰프박스가 아닌 스튜디오 장비예요. 페달과 앰프는 `parameter`에 실제 노브 구성이 들어가고, **캐비닛은 노브가 없어서 `parameter`가 항상 빈 배열**이에요.
+어떤 상자냐를 말해요 — `'pedal'`, `'amp'`, `'cab'`, `'rack'` 중 하나. `rack`은 Teletronix LA-2A처럼 스톰프박스가 아닌 스튜디오 장비예요. 페달과 앰프는 `parameter`에 실제 노브 구성이 들어가고, **캐비닛은 노브가 없어서 `parameter`가 항상 빈 배열**이에요.
 
 ```js
 effector.all('cab').every((cab) => cab.parameter.length === 0)  // → true
@@ -123,7 +158,7 @@ effector.all('cab')        // 캐비닛 100개
 `src/data/gear.json`에 한 줄 추가하면 끝이에요.
 
 ```json
-{ "company": "Marshall", "model": "JCM800", "type": "amp",
+{ "company": "Marshall", "model": "JCM800", "type": "amp", "category": "amp",
   "parameter": ["presence", "bass", "middle", "treble", "master", "preamp"] }
 ```
 
@@ -140,7 +175,8 @@ npm test
 
 - 같은 브랜드 안에서 두 모델이 같은 키로 충돌할 때 (예: `"TS-808"`과 `"TS808"`을 둘 다 넣는 경우)
 - 두 모델의 키가 구분자만 다를 때 (예: `"Big Muff Pi"`와 `"BigMuffPi"` — 구분자를 무시하는 조회가 둘을 구별할 수 없어서예요)
-- `type`이 `pedal`/`amp`/`cab` 중 하나가 아닐 때
+- `type`이 `pedal`/`amp`/`cab`/`rack` 중 하나가 아닐 때
+- `category`가 정해진 12개 중 하나가 아닐 때
 - `type: "cab"`인데 `parameter`가 비어있지 않을 때
 
 ## 테스트

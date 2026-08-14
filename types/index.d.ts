@@ -3,15 +3,23 @@
 
 export type GearType = 'pedal' | 'amp' | 'cab' | 'rack';
 
+/** What the gear does to the signal — a different axis than GearType. */
+export type GearCategory = 'drive' | 'comp' | 'delay' | 'reverb' | 'modulation' | 'eq' | 'filter' | 'wah' | 'pitch' | 'volume' | 'amp' | 'cab';
+
 export interface GearInfo {
   company: string;
   model: string;
   type: GearType;
+  category: GearCategory;
   /** The controls/knobs. Always empty for cabs, which have none. */
   parameter: string[];
 }
 
 export declare const GEAR_TYPES: GearType[];
+export declare const GEAR_CATEGORIES: GearCategory[];
+
+/** `repeatRate` → "Repeat Rate", `hfDrive` → "HF Drive". */
+export declare function formatParameter(name: string): string;
 
 /**
  * Every entry, normalized, as one shared frozen array — allocated once.
@@ -21,941 +29,941 @@ export declare const gear: readonly Readonly<GearInfo>[];
 
 /** Pro Co */
 export interface ProCoBrand {
-  /** RAT2 — pedal */
+  /** RAT2 — pedal · drive */
   rat2(): GearInfo;
 }
 
 /** Boss */
 export interface BossBrand {
-  /** DS-1 — pedal */
+  /** DS-1 — pedal · drive */
   ds1(): GearInfo;
-  /** SD-1 — pedal */
+  /** SD-1 — pedal · drive */
   sd1(): GearInfo;
-  /** BD-2 — pedal */
+  /** BD-2 — pedal · drive */
   bd2(): GearInfo;
-  /** CE-2 — pedal */
+  /** CE-2 — pedal · modulation */
   ce2(): GearInfo;
-  /** DM-2 — pedal */
+  /** DM-2 — pedal · delay */
   dm2(): GearInfo;
-  /** CS-3 — pedal */
+  /** CS-3 — pedal · comp */
   cs3(): GearInfo;
-  /** CE-1 — pedal */
+  /** CE-1 — pedal · modulation */
   ce1(): GearInfo;
-  /** OC-2 — pedal */
+  /** OC-2 — pedal · pitch */
   oc2(): GearInfo;
-  /** VB-2 — pedal */
+  /** VB-2 — pedal · modulation */
   vb2(): GearInfo;
-  /** MT-2 — pedal */
+  /** MT-2 — pedal · drive */
   mt2(): GearInfo;
-  /** HM-2 — pedal */
+  /** HM-2 — pedal · drive */
   hm2(): GearInfo;
-  /** OD-1 — pedal */
+  /** OD-1 — pedal · drive */
   od1(): GearInfo;
-  /** CS-1 — pedal */
+  /** CS-1 — pedal · comp */
   cs1(): GearInfo;
-  /** PN-2 — pedal */
+  /** PN-2 — pedal · modulation */
   pn2(): GearInfo;
-  /** CE-2W — pedal */
+  /** CE-2W — pedal · modulation */
   ce2w(): GearInfo;
-  /** FA-1 FET Amplifier — pedal */
+  /** FA-1 FET Amplifier — pedal · drive */
   fa1_fet_amplifier(): GearInfo;
 }
 
 /** Ibanez */
 export interface IbanezBrand {
-  /** TS808 — pedal */
+  /** TS808 — pedal · drive */
   ts808(): GearInfo;
-  /** TS9 — pedal */
+  /** TS9 — pedal · drive */
   ts9(): GearInfo;
 }
 
 /** MXR */
 export interface MxrBrand {
-  /** Distortion+ — pedal */
+  /** Distortion+ — pedal · drive */
   distortionplus(): GearInfo;
-  /** Phase 90 — pedal */
+  /** Phase 90 — pedal · modulation */
   phase_90(): GearInfo;
-  /** Dyna Comp — pedal */
+  /** Dyna Comp — pedal · comp */
   dyna_comp(): GearInfo;
-  /** Micro Amp — pedal */
+  /** Micro Amp — pedal · comp */
   micro_amp(): GearInfo;
-  /** Flanger — pedal */
+  /** Flanger — pedal · modulation */
   flanger(): GearInfo;
 }
 
 /** Electro-Harmonix */
 export interface ElectroHarmonixBrand {
-  /** Big Muff Pi — pedal */
+  /** Big Muff Pi — pedal · drive */
   big_muff_pi(): GearInfo;
-  /** Small Stone — pedal */
+  /** Small Stone — pedal · modulation */
   small_stone(): GearInfo;
-  /** Deluxe Memory Man — pedal */
+  /** Deluxe Memory Man — pedal · delay */
   deluxe_memory_man(): GearInfo;
-  /** Russian Big Muff Pi — pedal */
+  /** Russian Big Muff Pi — pedal · drive */
   russian_big_muff_pi(): GearInfo;
 }
 
 /** Klon */
 export interface KlonBrand {
-  /** Centaur — pedal */
+  /** Centaur — pedal · drive */
   centaur(): GearInfo;
 }
 
 /** Dunlop */
 export interface DunlopBrand {
-  /** Fuzz Face — pedal */
+  /** Fuzz Face — pedal · drive */
   fuzz_face(): GearInfo;
-  /** Cry Baby — pedal */
+  /** Cry Baby — pedal · wah */
   cry_baby(): GearInfo;
-  /** Cry Baby From Hell — pedal */
+  /** Cry Baby From Hell — pedal · wah */
   cry_baby_from_hell(): GearInfo;
-  /** 105Q Bass Wah — pedal */
+  /** 105Q Bass Wah — pedal · wah */
   _105q_bass_wah(): GearInfo;
-  /** Cry Baby Clyde McCoy — pedal */
+  /** Cry Baby Clyde McCoy — pedal · wah */
   cry_baby_clyde_mccoy(): GearInfo;
 }
 
 /** Way Huge */
 export interface WayHugeBrand {
-  /** Green Rhino — pedal */
+  /** Green Rhino — pedal · drive */
   green_rhino(): GearInfo;
-  /** Red Llama — pedal */
+  /** Red Llama — pedal · drive */
   red_llama(): GearInfo;
 }
 
 /** Fulltone */
 export interface FulltoneBrand {
-  /** OCD — pedal */
+  /** OCD — pedal · drive */
   ocd(): GearInfo;
-  /** Full-Drive 2 — pedal */
+  /** Full-Drive 2 — pedal · drive */
   fulldrive_2(): GearInfo;
 }
 
 /** Roland */
 export interface RolandBrand {
-  /** RE-201 Space Echo — pedal */
+  /** RE-201 Space Echo — pedal · delay */
   re201_space_echo(): GearInfo;
-  /** SDD-320 Dimension D — rack */
+  /** SDD-320 Dimension D — rack · modulation */
   sdd320_dimension_d(): GearInfo;
-  /** JC-120 — amp */
+  /** JC-120 — amp · amp */
   jc120(): GearInfo;
-  /** JC-120 2x12 — cab */
+  /** JC-120 2x12 — cab · cab */
   jc120_2x12(): GearInfo;
 }
 
 /** Maestro */
 export interface MaestroBrand {
-  /** Echoplex EP-3 — pedal */
+  /** Echoplex EP-3 — pedal · delay */
   echoplex_ep3(): GearInfo;
-  /** FZ-1 Fuzz-Tone — pedal */
+  /** FZ-1 Fuzz-Tone — pedal · drive */
   fz1_fuzztone(): GearInfo;
 }
 
 /** Binson */
 export interface BinsonBrand {
-  /** EchoRec — pedal */
+  /** EchoRec — pedal · delay */
   echorec(): GearInfo;
 }
 
 /** A/DA */
 export interface ADaBrand {
-  /** Flanger — pedal */
+  /** Flanger — pedal · modulation */
   flanger(): GearInfo;
 }
 
 /** Musitronics */
 export interface MusitronicsBrand {
-  /** Mu-Tron III — pedal */
+  /** Mu-Tron III — pedal · filter */
   mutron_iii(): GearInfo;
-  /** Bi-Phase — pedal */
+  /** Bi-Phase — pedal · modulation */
   biphase(): GearInfo;
 }
 
 /** Shin-ei */
 export interface ShinEiBrand {
-  /** Uni-Vibe — pedal */
+  /** Uni-Vibe — pedal · modulation */
   univibe(): GearInfo;
 }
 
 /** Vox */
 export interface VoxBrand {
-  /** V846 — pedal */
+  /** V846 — pedal · wah */
   v846(): GearInfo;
-  /** V847 — pedal */
+  /** V847 — pedal · wah */
   v847(): GearInfo;
-  /** Tone Bender — pedal */
+  /** Tone Bender — pedal · drive */
   tone_bender(): GearInfo;
-  /** AC-30 Top Boost — amp */
+  /** AC-30 Top Boost — amp · amp */
   ac30_top_boost(): GearInfo;
-  /** AC-15 — amp */
+  /** AC-15 — amp · amp */
   ac15(): GearInfo;
-  /** AC-15 1x12 Blue Alnico — cab */
+  /** AC-15 1x12 Blue Alnico — cab · cab */
   ac15_1x12_blue_alnico(): GearInfo;
-  /** AC-30 Fawn 2x12 Blue Alnico — cab */
+  /** AC-30 Fawn 2x12 Blue Alnico — cab · cab */
   ac30_fawn_2x12_blue_alnico(): GearInfo;
-  /** AC-30TB 2x12 Silver Alnico — cab */
+  /** AC-30TB 2x12 Silver Alnico — cab · cab */
   ac30tb_2x12_silver_alnico(): GearInfo;
-  /** AC-30 2x12 Pre-Rola Greenback Pulsonic — cab */
+  /** AC-30 2x12 Pre-Rola Greenback Pulsonic — cab · cab */
   ac30_2x12_prerola_greenback_pulsonic(): GearInfo;
 }
 
 /** Marshall */
 export interface MarshallBrand {
-  /** Guv'nor — pedal */
+  /** Guv'nor — pedal · drive */
   guvnor(): GearInfo;
-  /** Bluesbreaker — pedal */
+  /** Bluesbreaker — pedal · drive */
   bluesbreaker(): GearInfo;
-  /** Shred Master — pedal */
+  /** Shred Master — pedal · drive */
   shred_master(): GearInfo;
-  /** JTM-45 — amp */
+  /** JTM-45 — amp · amp */
   jtm45(): GearInfo;
-  /** JTM-50 — amp */
+  /** JTM-50 — amp · amp */
   jtm50(): GearInfo;
-  /** Super Lead 100 — amp */
+  /** Super Lead 100 — amp · amp */
   super_lead_100(): GearInfo;
-  /** JCM-800 2203 — amp */
+  /** JCM-800 2203 — amp · amp */
   jcm800_2203(): GearInfo;
-  /** JCM-800 2204 — amp */
+  /** JCM-800 2204 — amp · amp */
   jcm800_2204(): GearInfo;
-  /** Silver Jubilee 2555 — amp */
+  /** Silver Jubilee 2555 — amp · amp */
   silver_jubilee_2555(): GearInfo;
-  /** JCM900 4100 — amp */
+  /** JCM900 4100 — amp · amp */
   jcm900_4100(): GearInfo;
-  /** Super Bass 100 — amp */
+  /** Super Bass 100 — amp · amp */
   super_bass_100(): GearInfo;
-  /** JMP-1 — amp */
+  /** JMP-1 — amp · amp */
   jmp1(): GearInfo;
-  /** JVM410HJS — amp */
+  /** JVM410HJS — amp · amp */
   jvm410hjs(): GearInfo;
-  /** 1933 1x12 Texas Heat — cab */
+  /** 1933 1x12 Texas Heat — cab · cab */
   _1933_1x12_texas_heat(): GearInfo;
-  /** Basketweave 4x12 G12M-20 — cab */
+  /** Basketweave 4x12 G12M-20 — cab · cab */
   basketweave_4x12_g12m20(): GearInfo;
-  /** Basketweave 4x12 G12M-25 — cab */
+  /** Basketweave 4x12 G12M-25 — cab · cab */
   basketweave_4x12_g12m25(): GearInfo;
-  /** Basketweave 4x12 G12H-30 — cab */
+  /** Basketweave 4x12 G12H-30 — cab · cab */
   basketweave_4x12_g12h30(): GearInfo;
-  /** 1935A 4x12 G12M25 — cab */
+  /** 1935A 4x12 G12M25 — cab · cab */
   _1935a_4x12_g12m25(): GearInfo;
-  /** 1935B 4x12 Alnico Cream — cab */
+  /** 1935B 4x12 Alnico Cream — cab · cab */
   _1935b_4x12_alnico_cream(): GearInfo;
-  /** 1960A 4x12 G12T-75 — cab */
+  /** 1960A 4x12 G12T-75 — cab · cab */
   _1960a_4x12_g12t75(): GearInfo;
-  /** 1960A 4x12 G12M25 — cab */
+  /** 1960A 4x12 G12M25 — cab · cab */
   _1960a_4x12_g12m25(): GearInfo;
-  /** 1960A 4x12 G12-50GL Lynchback — cab */
+  /** 1960A 4x12 G12-50GL Lynchback — cab · cab */
   _1960a_4x12_g1250gl_lynchback(): GearInfo;
-  /** 1960AV 4x12 V30 — cab */
+  /** 1960AV 4x12 V30 — cab · cab */
   _1960av_4x12_v30(): GearInfo;
-  /** 1960B 4x12 Greenback — cab */
+  /** 1960B 4x12 Greenback — cab · cab */
   _1960b_4x12_greenback(): GearInfo;
-  /** 1960B 4x12 Pulsonic Greenback — cab */
+  /** 1960B 4x12 Pulsonic Greenback — cab · cab */
   _1960b_4x12_pulsonic_greenback(): GearInfo;
-  /** 1960B 4x12 V30 — cab */
+  /** 1960B 4x12 V30 — cab · cab */
   _1960b_4x12_v30(): GearInfo;
-  /** 1960TV 4x12 Celestion — cab */
+  /** 1960TV 4x12 Celestion — cab · cab */
   _1960tv_4x12_celestion(): GearInfo;
-  /** 2551B 4x12 Celestion — cab */
+  /** 2551B 4x12 Celestion — cab · cab */
   _2551b_4x12_celestion(): GearInfo;
 }
 
 /** Z.Vex */
 export interface ZVexBrand {
-  /** Fuzz Factory — pedal */
+  /** Fuzz Factory — pedal · drive */
   fuzz_factory(): GearInfo;
 }
 
 /** Xotic */
 export interface XoticBrand {
-  /** EP Booster — pedal */
+  /** EP Booster — pedal · drive */
   ep_booster(): GearInfo;
-  /** RC Booster — pedal */
+  /** RC Booster — pedal · drive */
   rc_booster(): GearInfo;
-  /** BB Preamp — pedal */
+  /** BB Preamp — pedal · drive */
   bb_preamp(): GearInfo;
-  /** SP Compressor — pedal */
+  /** SP Compressor — pedal · comp */
   sp_compressor(): GearInfo;
-  /** AC Booster — pedal */
+  /** AC Booster — pedal · drive */
   ac_booster(): GearInfo;
 }
 
 /** Hermida */
 export interface HermidaBrand {
-  /** Zendrive — pedal */
+  /** Zendrive — pedal · drive */
   zendrive(): GearInfo;
 }
 
 /** Analogman */
 export interface AnalogmanBrand {
-  /** King of Tone — pedal */
+  /** King of Tone — pedal · drive */
   king_of_tone(): GearInfo;
 }
 
 /** Tech 21 */
 export interface Tech21Brand {
-  /** SansAmp Bass Driver DI — pedal */
+  /** SansAmp Bass Driver DI — pedal · drive */
   sansamp_bass_driver_di(): GearInfo;
 }
 
 /** Earthquaker Devices */
 export interface EarthquakerDevicesBrand {
-  /** Plumes — pedal */
+  /** Plumes — pedal · drive */
   plumes(): GearInfo;
 }
 
 /** Nobels */
 export interface NobelsBrand {
-  /** ODR-1 — pedal */
+  /** ODR-1 — pedal · drive */
   odr1(): GearInfo;
 }
 
 /** Paul Cochrane */
 export interface PaulCochraneBrand {
-  /** Timmy — pedal */
+  /** Timmy — pedal · drive */
   timmy(): GearInfo;
 }
 
 /** Maxon */
 export interface MaxonBrand {
-  /** SD-9 Sonic Distortion — pedal */
+  /** SD-9 Sonic Distortion — pedal · drive */
   sd9_sonic_distortion(): GearInfo;
 }
 
 /** Dallas */
 export interface DallasBrand {
-  /** Rangemaster — pedal */
+  /** Rangemaster — pedal · drive */
   rangemaster(): GearInfo;
 }
 
 /** DOD */
 export interface DodBrand {
-  /** 250 Overdrive Preamp — pedal */
+  /** 250 Overdrive Preamp — pedal · drive */
   _250_overdrive_preamp(): GearInfo;
 }
 
 /** Colorsound */
 export interface ColorsoundBrand {
-  /** Overdriver — pedal */
+  /** Overdriver — pedal · drive */
   overdriver(): GearInfo;
 }
 
 /** Chandler */
 export interface ChandlerBrand {
-  /** Tube Driver — pedal */
+  /** Tube Driver — pedal · drive */
   tube_driver(): GearInfo;
 }
 
 /** Tycobrahe */
 export interface TycobraheBrand {
-  /** Octavia — pedal */
+  /** Octavia — pedal · drive */
   octavia(): GearInfo;
 }
 
 /** Darkglass */
 export interface DarkglassBrand {
-  /** Microtubes B3K — pedal */
+  /** Microtubes B3K — pedal · drive */
   microtubes_b3k(): GearInfo;
-  /** DG212N 2x12 Neodymium — cab */
+  /** DG212N 2x12 Neodymium — cab · cab */
   dg212n_2x12_neodymium(): GearInfo;
-  /** D210C 2x10 Ceramic — cab */
+  /** D210C 2x10 Ceramic — cab · cab */
   d210c_2x10_ceramic(): GearInfo;
 }
 
 /** Friedman */
 export interface FriedmanBrand {
-  /** BE-OD — pedal */
+  /** BE-OD — pedal · drive */
   beod(): GearInfo;
-  /** BE-100 — amp */
+  /** BE-100 — amp · amp */
   be100(): GearInfo;
-  /** Dirty Shirley — amp */
+  /** Dirty Shirley — amp · amp */
   dirty_shirley(): GearInfo;
-  /** Small Box — amp */
+  /** Small Box — amp · amp */
   small_box(): GearInfo;
 }
 
 /** Horizon Devices */
 export interface HorizonDevicesBrand {
-  /** Precision Drive — pedal */
+  /** Precision Drive — pedal · drive */
   precision_drive(): GearInfo;
 }
 
 /** Keeley */
 export interface KeeleyBrand {
-  /** Red Dirt — pedal */
+  /** Red Dirt — pedal · drive */
   red_dirt(): GearInfo;
 }
 
 /** Vemuram */
 export interface VemuramBrand {
-  /** Jan Ray — pedal */
+  /** Jan Ray — pedal · drive */
   jan_ray(): GearInfo;
 }
 
 /** Ampeg */
 export interface AmpegBrand {
-  /** Scrambler — pedal */
+  /** Scrambler — pedal · drive */
   scrambler(): GearInfo;
-  /** SVT — amp */
+  /** SVT — amp · amp */
   svt(): GearInfo;
-  /** B-15NF Portaflex — amp */
+  /** B-15NF Portaflex — amp · amp */
   b15nf_portaflex(): GearInfo;
-  /** SVT-2 Pro — amp */
+  /** SVT-2 Pro — amp · amp */
   svt2_pro(): GearInfo;
-  /** Heritage SVT-CL — amp */
+  /** Heritage SVT-CL — amp · amp */
   heritage_svtcl(): GearInfo;
-  /** B-15 1x15 — cab */
+  /** B-15 1x15 — cab · cab */
   b15_1x15(): GearInfo;
-  /** SVT-115HE 1x15 — cab */
+  /** SVT-115HE 1x15 — cab · cab */
   svt115he_1x15(): GearInfo;
-  /** PR-410HLF 4x10 — cab */
+  /** PR-410HLF 4x10 — cab · cab */
   pr410hlf_4x10(): GearInfo;
-  /** B410HE 4x10 — cab */
+  /** B410HE 4x10 — cab · cab */
   b410he_4x10(): GearInfo;
-  /** SVT-810AV 8x10 — cab */
+  /** SVT-810AV 8x10 — cab · cab */
   svt810av_8x10(): GearInfo;
-  /** SVT-810 8x10 Eminence — cab */
+  /** SVT-810 8x10 Eminence — cab · cab */
   svt810_8x10_eminence(): GearInfo;
 }
 
 /** Digitech */
 export interface DigitechBrand {
-  /** Whammy — pedal */
+  /** Whammy — pedal · pitch */
   whammy(): GearInfo;
 }
 
 /** Moog */
 export interface MoogBrand {
-  /** Moogerfooger MF-101 — pedal */
+  /** Moogerfooger MF-101 — pedal · filter */
   moogerfooger_mf101(): GearInfo;
 }
 
 /** Lovepedal */
 export interface LovepedalBrand {
-  /** Eternity — pedal */
+  /** Eternity — pedal · drive */
   eternity(): GearInfo;
 }
 
 /** Suhr */
 export interface SuhrBrand {
-  /** Riot — pedal */
+  /** Riot — pedal · drive */
   riot(): GearInfo;
-  /** Cab 2x12 V-Type — cab */
+  /** Cab 2x12 V-Type — cab · cab */
   cab_2x12_vtype(): GearInfo;
 }
 
 /** Teletronix */
 export interface TeletronixBrand {
-  /** LA-2A — rack */
+  /** LA-2A — rack · comp */
   la2a(): GearInfo;
 }
 
 /** Universal Audio */
 export interface UniversalAudioBrand {
-  /** 1176 — rack */
+  /** 1176 — rack · comp */
   _1176(): GearInfo;
 }
 
 /** Fender */
 export interface FenderBrand {
-  /** Champ — amp */
+  /** Champ — amp · amp */
   champ(): GearInfo;
-  /** 5C3 Tweed Deluxe — amp */
+  /** 5C3 Tweed Deluxe — amp · amp */
   _5c3_tweed_deluxe(): GearInfo;
-  /** Bassman — amp */
+  /** Bassman — amp · amp */
   bassman(): GearInfo;
-  /** Princeton Reverb — amp */
+  /** Princeton Reverb — amp · amp */
   princeton_reverb(): GearInfo;
-  /** Deluxe Reverb — amp */
+  /** Deluxe Reverb — amp · amp */
   deluxe_reverb(): GearInfo;
-  /** Super Reverb — amp */
+  /** Super Reverb — amp · amp */
   super_reverb(): GearInfo;
-  /** Twin Reverb — amp */
+  /** Twin Reverb — amp · amp */
   twin_reverb(): GearInfo;
-  /** High Power Tweed Twin 5F8-A — amp */
+  /** High Power Tweed Twin 5F8-A — amp · amp */
   high_power_tweed_twin_5f8a(): GearInfo;
-  /** Blues Junior — amp */
+  /** Blues Junior — amp · amp */
   blues_junior(): GearInfo;
-  /** Tremolux — amp */
+  /** Tremolux — amp · amp */
   tremolux(): GearInfo;
-  /** Princeton — amp */
+  /** Princeton — amp · amp */
   princeton(): GearInfo;
-  /** 5F2-A Tweed Princeton — amp */
+  /** 5F2-A Tweed Princeton — amp · amp */
   _5f2a_tweed_princeton(): GearInfo;
-  /** Champ 1x8 — cab */
+  /** Champ 1x8 — cab · cab */
   champ_1x8(): GearInfo;
-  /** Princeton Reverb 1x10 — cab */
+  /** Princeton Reverb 1x10 — cab · cab */
   princeton_reverb_1x10(): GearInfo;
-  /** Princeton 1x10 C1060 — cab */
+  /** Princeton 1x10 C1060 — cab · cab */
   princeton_1x10_c1060(): GearInfo;
-  /** Princeton 1x10 C10R — cab */
+  /** Princeton 1x10 C10R — cab · cab */
   princeton_1x10_c10r(): GearInfo;
-  /** Princeton Brownface 1x10 G10 Alnico Gold — cab */
+  /** Princeton Brownface 1x10 G10 Alnico Gold — cab · cab */
   princeton_brownface_1x10_g10_alnico_gold(): GearInfo;
-  /** 5C3 Tweed Deluxe 1x12 — cab */
+  /** 5C3 Tweed Deluxe 1x12 — cab · cab */
   _5c3_tweed_deluxe_1x12(): GearInfo;
-  /** Deluxe 1x12 Oxford — cab */
+  /** Deluxe 1x12 Oxford — cab · cab */
   deluxe_1x12_oxford(): GearInfo;
-  /** Deluxe Blackface 1x12 C12K — cab */
+  /** Deluxe Blackface 1x12 C12K — cab · cab */
   deluxe_blackface_1x12_c12k(): GearInfo;
-  /** Deluxe 1x12 GA-SC64 — cab */
+  /** Deluxe 1x12 GA-SC64 — cab · cab */
   deluxe_1x12_gasc64(): GearInfo;
-  /** Deluxe Tweed 1x12 G12Q — cab */
+  /** Deluxe Tweed 1x12 G12Q — cab · cab */
   deluxe_tweed_1x12_g12q(): GearInfo;
-  /** Tremolux 2x10 Oxford Alnico — cab */
+  /** Tremolux 2x10 Oxford Alnico — cab · cab */
   tremolux_2x10_oxford_alnico(): GearInfo;
-  /** Twin 2x12 C12N — cab */
+  /** Twin 2x12 C12N — cab · cab */
   twin_2x12_c12n(): GearInfo;
-  /** Twin Reverb 2x12 C12K-2 — cab */
+  /** Twin Reverb 2x12 C12K-2 — cab · cab */
   twin_reverb_2x12_c12k2(): GearInfo;
-  /** Tweed Twin 2x12 Classic Alnico — cab */
+  /** Tweed Twin 2x12 Classic Alnico — cab · cab */
   tweed_twin_2x12_classic_alnico(): GearInfo;
-  /** Cab 2x12 A-Type — cab */
+  /** Cab 2x12 A-Type — cab · cab */
   cab_2x12_atype(): GearInfo;
-  /** Blonde Bassman 2x12 V30 — cab */
+  /** Blonde Bassman 2x12 V30 — cab · cab */
   blonde_bassman_2x12_v30(): GearInfo;
-  /** Bassman 4x10 P10R — cab */
+  /** Bassman 4x10 P10R — cab · cab */
   bassman_4x10_p10r(): GearInfo;
-  /** Bassman 4x10 P10Q — cab */
+  /** Bassman 4x10 P10Q — cab · cab */
   bassman_4x10_p10q(): GearInfo;
-  /** Super Reverb 4x10 CTS Alnico — cab */
+  /** Super Reverb 4x10 CTS Alnico — cab · cab */
   super_reverb_4x10_cts_alnico(): GearInfo;
-  /** Bassman 2x15 D130 — cab */
+  /** Bassman 2x15 D130 — cab · cab */
   bassman_2x15_d130(): GearInfo;
 }
 
 /** Park */
 export interface ParkBrand {
-  /** 75 — amp */
+  /** 75 — amp · amp */
   _75(): GearInfo;
-  /** 75 4x12 G12H-30 — cab */
+  /** 75 4x12 G12H-30 — cab · cab */
   _75_4x12_g12h30(): GearInfo;
 }
 
 /** Hiwatt */
 export interface HiwattBrand {
-  /** DR-103 — amp */
+  /** DR-103 — amp · amp */
   dr103(): GearInfo;
-  /** AP 4x12 Fane — cab */
+  /** AP 4x12 Fane — cab · cab */
   ap_4x12_fane(): GearInfo;
-  /** SE4123 4x12 — cab */
+  /** SE4123 4x12 — cab · cab */
   se4123_4x12(): GearInfo;
 }
 
 /** Sunn */
 export interface SunnBrand {
-  /** Model T — amp */
+  /** Model T — amp · amp */
   model_t(): GearInfo;
-  /** Coliseum 300 — amp */
+  /** Coliseum 300 — amp · amp */
   coliseum_300(): GearInfo;
-  /** 4x12 G12T-75 — cab */
+  /** 4x12 G12T-75 — cab · cab */
   _4x12_g12t75(): GearInfo;
 }
 
 /** MESA/Boogie */
 export interface MesaBoogieBrand {
-  /** Dual Rectifier — amp */
+  /** Dual Rectifier — amp · amp */
   dual_rectifier(): GearInfo;
-  /** Mark IV — amp */
+  /** Mark IV — amp · amp */
   mark_iv(): GearInfo;
-  /** Lone Star — amp */
+  /** Lone Star — amp · amp */
   lone_star(): GearInfo;
-  /** Bass 400+ — amp */
+  /** Bass 400+ — amp · amp */
   bass_400plus(): GearInfo;
-  /** Trem-O-Verb — amp */
+  /** Trem-O-Verb — amp · amp */
   tremoverb(): GearInfo;
-  /** JP-2C — amp */
+  /** JP-2C — amp · amp */
   jp2c(): GearInfo;
-  /** M9 Carbine — amp */
+  /** M9 Carbine — amp · amp */
   m9_carbine(): GearInfo;
-  /** Mark IIC+ — amp */
+  /** Mark IIC+ — amp · amp */
   mark_iicplus(): GearInfo;
-  /** TriAxis — amp */
+  /** TriAxis — amp · amp */
   triaxis(): GearInfo;
-  /** Subway Blues — amp */
+  /** Subway Blues — amp · amp */
   subway_blues(): GearInfo;
-  /** Extension 1x12 EVM12L — cab */
+  /** Extension 1x12 EVM12L — cab · cab */
   extension_1x12_evm12l(): GearInfo;
-  /** Mark IV Combo 1x12 — cab */
+  /** Mark IV Combo 1x12 — cab · cab */
   mark_iv_combo_1x12(): GearInfo;
-  /** Rectifier 2x12 Legend V12 — cab */
+  /** Rectifier 2x12 Legend V12 — cab · cab */
   rectifier_2x12_legend_v12(): GearInfo;
-  /** Rectifier 2x12 V30 — cab */
+  /** Rectifier 2x12 V30 — cab · cab */
   rectifier_2x12_v30(): GearInfo;
-  /** Custom 4x12 Black Shadow — cab */
+  /** Custom 4x12 Black Shadow — cab · cab */
   custom_4x12_black_shadow(): GearInfo;
-  /** Stiletto 4x12 V30 — cab */
+  /** Stiletto 4x12 V30 — cab · cab */
   stiletto_4x12_v30(): GearInfo;
-  /** Standard OS Angled 4x12 V30 — cab */
+  /** Standard OS Angled 4x12 V30 — cab · cab */
   standard_os_angled_4x12_v30(): GearInfo;
-  /** Standard OS Straight 4x12 V30 — cab */
+  /** Standard OS Straight 4x12 V30 — cab · cab */
   standard_os_straight_4x12_v30(): GearInfo;
-  /** Oversize Angle 2003 4x12 UK V30 — cab */
+  /** Oversize Angle 2003 4x12 UK V30 — cab · cab */
   oversize_angle_2003_4x12_uk_v30(): GearInfo;
-  /** Traditional Angled 4x12 V30 — cab */
+  /** Traditional Angled 4x12 V30 — cab · cab */
   traditional_angled_4x12_v30(): GearInfo;
-  /** Traditional Straight 4x12 G12H30 — cab */
+  /** Traditional Straight 4x12 G12H30 — cab · cab */
   traditional_straight_4x12_g12h30(): GearInfo;
-  /** Traditional Straight 4x12 UK V30 — cab */
+  /** Traditional Straight 4x12 UK V30 — cab · cab */
   traditional_straight_4x12_uk_v30(): GearInfo;
-  /** 4FB 4x12 V30 — cab */
+  /** 4FB 4x12 V30 — cab · cab */
   _4fb_4x12_v30(): GearInfo;
-  /** 2x15 EV — cab */
+  /** 2x15 EV — cab · cab */
   _2x15_ev(): GearInfo;
-  /** PowerHouse 6x10 — cab */
+  /** PowerHouse 6x10 — cab · cab */
   powerhouse_6x10(): GearInfo;
 }
 
 /** Soldano */
 export interface SoldanoBrand {
-  /** SLO-100 — amp */
+  /** SLO-100 — amp · amp */
   slo100(): GearInfo;
-  /** X88R — amp */
+  /** X88R — amp · amp */
   x88r(): GearInfo;
-  /** 4x12 Eminence 12-5875 — cab */
+  /** 4x12 Eminence 12-5875 — cab · cab */
   _4x12_eminence_125875(): GearInfo;
 }
 
 /** Peavey */
 export interface PeaveyBrand {
-  /** 5150 — amp */
+  /** 5150 — amp · amp */
   _5150(): GearInfo;
-  /** Invective — amp */
+  /** Invective — amp · amp */
   invective(): GearInfo;
 }
 
 /** EVH */
 export interface EvhBrand {
-  /** 5150III — amp */
+  /** 5150III — amp · amp */
   _5150iii(): GearInfo;
-  /** Straight 4x12 G12EVH — cab */
+  /** Straight 4x12 G12EVH — cab · cab */
   straight_4x12_g12evh(): GearInfo;
 }
 
 /** Diezel */
 export interface DiezelBrand {
-  /** VH4 — amp */
+  /** VH4 — amp · amp */
   vh4(): GearInfo;
-  /** Herbert — amp */
+  /** Herbert — amp · amp */
   herbert(): GearInfo;
-  /** Front Loaded 4x12 V30 — cab */
+  /** Front Loaded 4x12 V30 — cab · cab */
   front_loaded_4x12_v30(): GearInfo;
 }
 
 /** Bogner */
 export interface BognerBrand {
-  /** Ecstasy 101B — amp */
+  /** Ecstasy 101B — amp · amp */
   ecstasy_101b(): GearInfo;
-  /** Shiva — amp */
+  /** Shiva — amp · amp */
   shiva(): GearInfo;
-  /** Überschall — amp */
+  /** Überschall — amp · amp */
   uberschall(): GearInfo;
-  /** Uberkab 4x12 G12T-75 — cab */
+  /** Uberkab 4x12 G12T-75 — cab · cab */
   uberkab_4x12_g12t75(): GearInfo;
-  /** Uberkab 4x12 V30 — cab */
+  /** Uberkab 4x12 V30 — cab · cab */
   uberkab_4x12_v30(): GearInfo;
 }
 
 /** Revv */
 export interface RevvBrand {
-  /** Generator 120 — amp */
+  /** Generator 120 — amp · amp */
   generator_120(): GearInfo;
 }
 
 /** Paul Reed Smith */
 export interface PaulReedSmithBrand {
-  /** Archon — amp */
+  /** Archon — amp · amp */
   archon(): GearInfo;
 }
 
 /** Orange */
 export interface OrangeBrand {
-  /** Rockerverb 100 MkIII — amp */
+  /** Rockerverb 100 MkIII — amp · amp */
   rockerverb_100_mkiii(): GearInfo;
-  /** OR80 — amp */
+  /** OR80 — amp · amp */
   or80(): GearInfo;
-  /** AD200B MK3 — amp */
+  /** AD200B MK3 — amp · amp */
   ad200b_mk3(): GearInfo;
-  /** Tiny Terror — amp */
+  /** Tiny Terror — amp · amp */
   tiny_terror(): GearInfo;
-  /** Rockerverb 50 MkII — amp */
+  /** Rockerverb 50 MkII — amp · amp */
   rockerverb_50_mkii(): GearInfo;
-  /** AD30HTC — amp */
+  /** AD30HTC — amp · amp */
   ad30htc(): GearInfo;
-  /** 2x12 V30 — cab */
+  /** 2x12 V30 — cab · cab */
   _2x12_v30(): GearInfo;
-  /** 4x12 Eminence — cab */
+  /** 4x12 Eminence — cab · cab */
   _4x12_eminence(): GearInfo;
-  /** PPC412 4x12 V30 — cab */
+  /** PPC412 4x12 V30 — cab · cab */
   ppc412_4x12_v30(): GearInfo;
 }
 
 /** Trainwreck Circuits */
 export interface TrainwreckCircuitsBrand {
-  /** Express — amp */
+  /** Express — amp · amp */
   express(): GearInfo;
-  /** Liverpool — amp */
+  /** Liverpool — amp · amp */
   liverpool(): GearInfo;
-  /** Rocket — amp */
+  /** Rocket — amp · amp */
   rocket(): GearInfo;
 }
 
 /** Dr Z */
 export interface DrZBrand {
-  /** Route 66 — amp */
+  /** Route 66 — amp · amp */
   route_66(): GearInfo;
-  /** Maz 38 — amp */
+  /** Maz 38 — amp · amp */
   maz_38(): GearInfo;
-  /** Maz 8 — amp */
+  /** Maz 8 — amp · amp */
   maz_8(): GearInfo;
-  /** Z Best 2x12 V30 — cab */
+  /** Z Best 2x12 V30 — cab · cab */
   z_best_2x12_v30(): GearInfo;
 }
 
 /** Grammatico */
 export interface GrammaticoBrand {
-  /** LaGrange — amp */
+  /** LaGrange — amp · amp */
   lagrange(): GearInfo;
-  /** GSG100 — amp */
+  /** GSG100 — amp · amp */
   gsg100(): GearInfo;
-  /** LaGrange 1x12 — cab */
+  /** LaGrange 1x12 — cab · cab */
   lagrange_1x12(): GearInfo;
 }
 
 /** Matchless */
 export interface MatchlessBrand {
-  /** DC30 — amp */
+  /** DC30 — amp · amp */
   dc30(): GearInfo;
-  /** Chieftain — amp */
+  /** Chieftain — amp · amp */
   chieftain(): GearInfo;
-  /** DC30 2x12 G12H-30 — cab */
+  /** DC30 2x12 G12H-30 — cab · cab */
   dc30_2x12_g12h30(): GearInfo;
-  /** DC30 2x12 G12M-35 — cab */
+  /** DC30 2x12 G12M-35 — cab · cab */
   dc30_2x12_g12m35(): GearInfo;
-  /** Chieftain 2x12 V30 — cab */
+  /** Chieftain 2x12 V30 — cab · cab */
   chieftain_2x12_v30(): GearInfo;
 }
 
 /** ENGL */
 export interface EnglBrand {
-  /** Fireball 100 — amp */
+  /** Fireball 100 — amp · amp */
   fireball_100(): GearInfo;
-  /** Savage 120 — amp */
+  /** Savage 120 — amp · amp */
   savage_120(): GearInfo;
-  /** Powerball — amp */
+  /** Powerball — amp · amp */
   powerball(): GearInfo;
-  /** XXL 4x12 V30 — cab */
+  /** XXL 4x12 V30 — cab · cab */
   xxl_4x12_v30(): GearInfo;
 }
 
 /** Silvertone */
 export interface SilvertoneBrand {
-  /** 1484 — amp */
+  /** 1484 — amp · amp */
   _1484(): GearInfo;
-  /** 1484 2x12 C12Q — cab */
+  /** 1484 2x12 C12Q — cab · cab */
   _1484_2x12_c12q(): GearInfo;
 }
 
 /** Supro */
 export interface SuproBrand {
-  /** S6616 — amp */
+  /** S6616 — amp · amp */
   s6616(): GearInfo;
-  /** 1964T Dual-Tone — amp */
+  /** 1964T Dual-Tone — amp · amp */
   _1964t_dualtone(): GearInfo;
-  /** S6616 1x6x9 — cab */
+  /** S6616 1x6x9 — cab · cab */
   s6616_1x6x9(): GearInfo;
 }
 
 /** Gibson */
 export interface GibsonBrand {
-  /** EH-185 — amp */
+  /** EH-185 — amp · amp */
   eh185(): GearInfo;
 }
 
 /** Aguilar */
 export interface AguilarBrand {
-  /** Tone Hammer 500 — amp */
+  /** Tone Hammer 500 — amp · amp */
   tone_hammer_500(): GearInfo;
 }
 
 /** Dumble */
 export interface DumbleBrand {
-  /** Overdrive Special — amp */
+  /** Overdrive Special — amp · amp */
   overdrive_special(): GearInfo;
 }
 
 /** Acoustic */
 export interface AcousticBrand {
-  /** 360 — amp */
+  /** 360 — amp · amp */
   _360(): GearInfo;
 }
 
 /** Markbass */
 export interface MarkbassBrand {
-  /** Little Mark III — amp */
+  /** Little Mark III — amp · amp */
   little_mark_iii(): GearInfo;
 }
 
 /** Morgan */
 export interface MorganBrand {
-  /** SW50 — amp */
+  /** SW50 — amp · amp */
   sw50(): GearInfo;
 }
 
 /** Naylor */
 export interface NaylorBrand {
-  /** Duel 38 — amp */
+  /** Duel 38 — amp · amp */
   duel_38(): GearInfo;
 }
 
 /** Splawn */
 export interface SplawnBrand {
-  /** Quick Rod — amp */
+  /** Quick Rod — amp · amp */
   quick_rod(): GearInfo;
-  /** Nitro — amp */
+  /** Nitro — amp · amp */
   nitro(): GearInfo;
 }
 
 /** Fuchs */
 export interface FuchsBrand {
-  /** Overdrive Supreme — amp */
+  /** Overdrive Supreme — amp · amp */
   overdrive_supreme(): GearInfo;
 }
 
 /** Bad Cat */
 export interface BadCatBrand {
-  /** Hot Cat 30 — amp */
+  /** Hot Cat 30 — amp · amp */
   hot_cat_30(): GearInfo;
 }
 
 /** Carr */
 export interface CarrBrand {
-  /** Rambler — amp */
+  /** Rambler — amp · amp */
   rambler(): GearInfo;
 }
 
 /** Komet */
 export interface KometBrand {
-  /** 60 — amp */
+  /** 60 — amp · amp */
   _60(): GearInfo;
-  /** Concorde — amp */
+  /** Concorde — amp · amp */
   concorde(): GearInfo;
 }
 
 /** Swart */
 export interface SwartBrand {
-  /** Atomic Space Tone — amp */
+  /** Atomic Space Tone — amp · amp */
   atomic_space_tone(): GearInfo;
 }
 
 /** Two-Rock */
 export interface TwoRockBrand {
-  /** Jet 35 — amp */
+  /** Jet 35 — amp · amp */
   jet_35(): GearInfo;
-  /** Open Back 2x12 EVM12L — cab */
+  /** Open Back 2x12 EVM12L — cab · cab */
   open_back_2x12_evm12l(): GearInfo;
-  /** Open Back 2x12 G12-65 — cab */
+  /** Open Back 2x12 G12-65 — cab · cab */
   open_back_2x12_g1265(): GearInfo;
-  /** Open Back 2x12 K and M 65 — cab */
+  /** Open Back 2x12 K and M 65 — cab · cab */
   open_back_2x12_k_and_m_65(): GearInfo;
 }
 
 /** Carol-Ann */
 export interface CarolAnnBrand {
-  /** Tucana 3 — amp */
+  /** Tucana 3 — amp · amp */
   tucana_3(): GearInfo;
-  /** OD2 — amp */
+  /** OD2 — amp · amp */
   od2(): GearInfo;
-  /** Triptik — amp */
+  /** Triptik — amp · amp */
   triptik(): GearInfo;
 }
 
 /** Cornford */
 export interface CornfordBrand {
-  /** MK50 II — amp */
+  /** MK50 II — amp · amp */
   mk50_ii(): GearInfo;
-  /** RK412 4x12 V30 — cab */
+  /** RK412 4x12 V30 — cab · cab */
   rk412_4x12_v30(): GearInfo;
 }
 
 /** Budda */
 export interface BuddaBrand {
-  /** Twinmaster — amp */
+  /** Twinmaster — amp · amp */
   twinmaster(): GearInfo;
 }
 
 /** Fryette */
 export interface FryetteBrand {
-  /** Deliverance 60 — amp */
+  /** Deliverance 60 — amp · amp */
   deliverance_60(): GearInfo;
 }
 
 /** Cameron */
 export interface CameronBrand {
-  /** CCV-100 — amp */
+  /** CCV-100 — amp · amp */
   ccv100(): GearInfo;
 }
 
 /** Divided by 13 */
 export interface DividedBy13Brand {
-  /** CJ11 — amp */
+  /** CJ11 — amp · amp */
   cj11(): GearInfo;
-  /** FTR 37 — amp */
+  /** FTR 37 — amp · amp */
   ftr_37(): GearInfo;
 }
 
 /** Carvin */
 export interface CarvinBrand {
-  /** Legacy VL100 — amp */
+  /** Legacy VL100 — amp · amp */
   legacy_vl100(): GearInfo;
 }
 
 /** Paul Ruby */
 export interface PaulRubyBrand {
-  /** Rocket — amp */
+  /** Rocket — amp · amp */
   rocket(): GearInfo;
 }
 
 /** Lee Jackson */
 export interface LeeJacksonBrand {
-  /** Modified 4x12 Governor — cab */
+  /** Modified 4x12 Governor — cab · cab */
   modified_4x12_governor(): GearInfo;
-  /** Modified 4x12 C90 — cab */
+  /** Modified 4x12 C90 — cab · cab */
   modified_4x12_c90(): GearInfo;
 }
 
 /** VHT */
 export interface VhtBrand {
-  /** FatBottom 4x12 P50 — cab */
+  /** FatBottom 4x12 P50 — cab · cab */
   fatbottom_4x12_p50(): GearInfo;
 }
 
 /** Zilla */
 export interface ZillaBrand {
-  /** Mini Modern 1x12 G12H150 Redback — cab */
+  /** Mini Modern 1x12 G12H150 Redback — cab · cab */
   mini_modern_1x12_g12h150_redback(): GearInfo;
-  /** Cab 2x12 Creamback G12H-75 — cab */
+  /** Cab 2x12 Creamback G12H-75 — cab · cab */
   cab_2x12_creamback_g12h75(): GearInfo;
-  /** Fatboy 2x12 Celestion — cab */
+  /** Fatboy 2x12 Celestion — cab · cab */
   fatboy_2x12_celestion(): GearInfo;
-  /** Open 2x12 Classic Lead 80 — cab */
+  /** Open 2x12 Classic Lead 80 — cab · cab */
   open_2x12_classic_lead_80(): GearInfo;
-  /** Open 2x12 G12-65 — cab */
+  /** Open 2x12 G12-65 — cab · cab */
   open_2x12_g1265(): GearInfo;
-  /** Open 2x12 Alnico Gold — cab */
+  /** Open 2x12 Alnico Gold — cab · cab */
   open_2x12_alnico_gold(): GearInfo;
-  /** Custom 4x12 V30 — cab */
+  /** Custom 4x12 V30 — cab · cab */
   custom_4x12_v30(): GearInfo;
 }
 
 /** Epifani */
 export interface EpifaniBrand {
-  /** Ultralight 1x12 — cab */
+  /** Ultralight 1x12 — cab · cab */
   ultralight_1x12(): GearInfo;
 }
 
 /** Eden */
 export interface EdenBrand {
-  /** D410XLT 4x10 — cab */
+  /** D410XLT 4x10 — cab · cab */
   d410xlt_4x10(): GearInfo;
 }
 

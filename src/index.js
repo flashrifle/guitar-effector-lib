@@ -13,12 +13,64 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export const GEAR_TYPES = ['pedal', 'amp', 'cab', 'rack'];
 
 /**
+ * What the gear does to the signal — a different axis than `type`, which says
+ * what kind of box it is. A Pro Co RAT is `type: 'pedal'`, `category: 'drive'`.
+ * Amps and cabs mirror their type so callers never have to handle a null.
+ */
+export const GEAR_CATEGORIES = [
+  'drive',
+  'comp',
+  'delay',
+  'reverb',
+  'modulation',
+  'eq',
+  'filter',
+  'wah',
+  'pitch',
+  'volume',
+  'amp',
+  'cab',
+];
+
+/** Knob names that read wrong when title-cased letter by letter. */
+const PARAMETER_ACRONYMS = new Set(['hf', 'od', 'eq', 'fac', 'vle', 'vpf', 'di', 'ir', 'ags']);
+
+/**
+ * Turns a stored knob key into the label a front panel would print:
+ * `repeatRate` → "Repeat Rate", `hfDrive` → "HF Drive".
+ *
+ * Word boundaries survive in the stored camelCase, so they can be recovered
+ * exactly; letter casing was normalized away on entry and is reconstructed.
+ * Acronyms come from a list because no rule distinguishes "od" from "on".
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+export function formatParameter(name) {
+  return String(name)
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/([a-zA-Z])(\d)/g, '$1 $2')
+    .replace(/(\d)([a-zA-Z])/g, '$1 $2')
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) =>
+      PARAMETER_ACRONYMS.has(word.toLowerCase())
+        ? word.toUpperCase()
+        : word.charAt(0).toUpperCase() + word.slice(1),
+    )
+    .join(' ');
+}
+
+/**
+ * @typedef {'drive'|'comp'|'delay'|'reverb'|'modulation'|'eq'|'filter'|'wah'|'pitch'|'volume'|'amp'|'cab'} GearCategory
+ *
  * @typedef {'pedal' | 'amp' | 'cab' | 'rack'} GearType
  *
  * @typedef {Object} GearInfo
  * @property {string} company - normalized company key, e.g. "proco"
  * @property {string} model - normalized model key, e.g. "rat2"
  * @property {GearType} type - what kind of gear this is
+ * @property {GearCategory} category - what it does to the signal
  * @property {string[]} parameter - the controls/knobs; always empty for cabs, which have none
  */
 
@@ -90,6 +142,12 @@ function buildBrands() {
       );
     }
 
+    if (!GEAR_CATEGORIES.includes(gear.category)) {
+      throw new Error(
+        `Invalid category "${gear.category}" on "${gear.company} ${gear.model}" — must be one of ${GEAR_CATEGORIES.join(', ')}. Fix it in gear.json.`,
+      );
+    }
+
     if (gear.type === 'cab' && gear.parameter.length > 0) {
       throw new Error(
         `Cab "${gear.company} ${gear.model}" declares controls ${JSON.stringify(gear.parameter)} — cabinets have no knobs, so parameter must be []. Fix it in gear.json.`,
@@ -108,6 +166,7 @@ function buildBrands() {
       company: companyKey,
       model: modelKey,
       type: gear.type,
+      category: gear.category,
       parameter: [...gear.parameter],
     });
   }
