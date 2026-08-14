@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { GuitarEffector, GEAR_TYPES } from '../src/index.js';
+import { GuitarEffector, GEAR_TYPES, gear } from '../src/index.js';
 import { toCompanyKey, toModelKey } from '../src/normalize.js';
 
 test('matches the exact requested usage: effector.proco.rat2()', () => {
@@ -27,6 +27,37 @@ test('every entry carries a type, and the shape is exactly four keys', () => {
       `${gear.company}.${gear.model} has invalid type "${gear.type}"`,
     );
   }
+});
+
+test('gear is the same data as all(), without re-allocating on every read', () => {
+  const effector = new GuitarEffector();
+  assert.deepEqual([...gear], effector.all());
+  // Same array identity across reads — that is the point of it existing.
+  assert.equal(gear, gear);
+});
+
+test('gear is frozen, because it is shared rather than copied', () => {
+  // all() hands out fresh copies you may mutate; gear is the shared one and
+  // must not be mutable, or one caller could corrupt every other caller.
+  assert.ok(Object.isFrozen(gear));
+  assert.ok(Object.isFrozen(gear[0]));
+  assert.ok(Object.isFrozen(gear[0].parameter));
+  assert.throws(() => gear.push({}), TypeError);
+  assert.throws(() => {
+    gear[0].company = 'hacked';
+  }, TypeError);
+});
+
+test('gear carries normalized keys, not the raw display names', () => {
+  // src/data/gear.json holds "Pro Co"/"RAT2"; the exported form must already
+  // be normalized so it can be used to look gear back up.
+  const rat2 = gear.find((g) => g.model === 'rat2');
+  assert.equal(rat2.company, 'proco');
+  const effector = new GuitarEffector();
+  assert.deepEqual(effector[rat2.company][rat2.model](), {
+    ...rat2,
+    parameter: [...rat2.parameter],
+  });
 });
 
 test('all(type) filters by gear type, all() returns everything', () => {

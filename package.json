@@ -1,6 +1,6 @@
 {
   "name": "guitar-effector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chainable brand.model() access to real guitar pedal, amp, and cab specs — new GuitarEffector().proco.rat2()",
   "type": "module",
   "main": "src/index.js",
@@ -9,7 +9,8 @@
     ".": {
       "types": "./types/index.d.ts",
       "default": "./src/index.js"
-    }
+    },
+    "./gear.json": "./src/data/gear.json"
   },
   "files": [
     "src",

@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # types/index.d.ts is generated from src/data/gear.json. Edit the data,
+      # forget to regenerate, and the committed types quietly describe gear
+      # that no longer matches. prepublishOnly rebuilds them at publish time,
+      # so the drift never surfaces until a release — this catches it on push.
+      - run: npm run build:types
+      - name: generated types match what is committed
+        run: git diff --exit-code -- types/
+
+      # The four data validations throw at module load, so importing the
+      # package is itself a smoke test for malformed gear.json.
+      - name: package imports cleanly
+        run: node -e "import('./src/index.js').then(() => console.log('load ok'))"
+
+      - run: npm test

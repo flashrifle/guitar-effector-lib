@@ -37,6 +37,12 @@ export interface GearInfo {
 
 export declare const GEAR_TYPES: GearType[];
 
+/**
+ * Every entry, normalized, as one shared frozen array — allocated once.
+ * Use this to index or scan; use \`all()\` when you need a mutable copy.
+ */
+export declare const gear: readonly Readonly<GearInfo>[];
+
 `;
 
 for (const [, { companyDisplay, models }] of brands) {

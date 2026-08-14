@@ -121,6 +121,28 @@ function buildBrands() {
 
 const { canonical, lookup } = buildBrands();
 
+/**
+ * Every entry, already normalized, as one shared frozen array.
+ *
+ * `all()` builds fresh, mutable copies on every call — right when you intend
+ * to modify the result, wasteful when you just want to read or index. This is
+ * the read-only counterpart: allocated once, safe to hand to any number of
+ * callers because nothing can write to it.
+ *
+ * Frozen deliberately. It is shared rather than copied, so a caller mutating
+ * it would corrupt the data for everyone else in the process.
+ *
+ * @type {readonly Readonly<GearInfo>[]}
+ */
+export const gear = Object.freeze(
+  Object.values(canonical).flatMap((models) =>
+    Object.values(models).map((fn) => {
+      const entry = fn();
+      return Object.freeze({ ...entry, parameter: Object.freeze(entry.parameter) });
+    }),
+  ),
+);
+
 export class GuitarEffector {
   constructor() {
     Object.assign(this, lookup);

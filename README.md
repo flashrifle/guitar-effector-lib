@@ -36,6 +36,34 @@ effector.all()                  // → 전체를 평탄화한 배열
 effector.all('amp')             // → 앰프만
 ```
 
+### 전체 데이터를 훑거나 색인할 때
+
+`all()`은 호출할 때마다 290개를 새로 만들어요. 고쳐 쓰라고 주는 복사본이거든요. 읽기만 할 거면 `gear`를 쓰세요 — **한 번만 만들어지고 얼려져 있어요.**
+
+```js
+import { gear } from 'guitar-effector';
+
+const index = new Map(gear.map((g) => [`${g.company} ${g.model}`, g]));
+index.get('proco rat2');   // → { company:'proco', model:'rat2', ... }
+```
+
+| | 언제 |
+|---|---|
+| `gear` | 읽기·색인. 재할당 없음, 수정 불가 (frozen) |
+| `all()` | 결과를 고칠 때. 매번 새 복사본 |
+
+### 번들러에서 쓸 때
+
+메인 엔트리는 `node:fs`로 데이터를 읽어서 **Node 전용**이에요. 브라우저 번들에 넣으려면 JSON을 직접 import 하세요.
+
+```js
+import raw from 'guitar-effector/gear.json' with { type: 'json' };
+```
+
+⚠️ **`gear.json`은 원본 표기예요.** `{ company: "Pro Co", model: "RAT2" }` — 정규화된 키(`proco` / `rat2`)가 아니에요. 이걸로 색인해서 `effector[company][model]`로 되찾으려 하면 안 맞아요. 정규화된 형태가 필요하면 `gear`를 쓰세요.
+
+(import attributes는 Node 22+가 `with`, 그 이전은 `assert`예요.)
+
 ### `type`
 
 `'pedal'`, `'amp'`, `'cab'`, `'rack'` 중 하나예요. `rack`은 Teletronix LA-2A처럼 스톰프박스가 아닌 스튜디오 장비예요. 페달과 앰프는 `parameter`에 실제 노브 구성이 들어가고, **캐비닛은 노브가 없어서 `parameter`가 항상 빈 배열**이에요.
