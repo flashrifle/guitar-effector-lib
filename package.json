@@ -1,0 +1,45 @@
+{
+  "name": "guitar-effector",
+  "version": "0.1.0",
+  "description": "Chainable brand.model() access to real guitar pedal, amp, and cab specs — new GuitarEffector().proco.rat2()",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "types"
+  ],
+  "author": "flashrifle",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flashrifle/guitar-effector-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flashrifle/guitar-effector-lib/issues"
+  },
+  "homepage": "https://github.com/flashrifle/guitar-effector-lib#readme",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test test/index.test.js",
+    "build:types": "node scripts/generate-types.js",
+    "prepublishOnly": "npm run build:types && npm test"
+  },
+  "keywords": [
+    "guitar",
+    "pedal",
+    "effects",
+    "amp",
+    "cabinet",
+    "distortion",
+    "music-production"
+  ],
+  "license": "MIT"
+}
