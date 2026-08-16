@@ -4091,5 +4091,145 @@
       "ctrl2",
       "mode"
     ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Pitch Fork",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "blend",
+      "shift",
+      "mode",
+      "latch"
+    ]
+  },
+  {
+    "company": "Morley",
+    "model": "Bad Horsie 2",
+    "type": "pedal",
+    "category": "wah",
+    "parameter": [
+      "sweep",
+      "contour",
+      "level"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Op-Amp Big Muff Pi",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "tone",
+      "sustain",
+      "toneBypass"
+    ]
+  },
+  {
+    "company": "Ibanez",
+    "model": "TS7",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "drive",
+      "tone",
+      "level",
+      "mode"
+    ]
+  },
+  {
+    "company": "Fulltone",
+    "model": "Clyde Deluxe Wah",
+    "type": "pedal",
+    "category": "wah",
+    "parameter": [
+      "sweep",
+      "inputLevel",
+      "mode",
+      "bufferLevel"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "M82 Bass Envelope Filter",
+    "type": "pedal",
+    "category": "filter",
+    "parameter": [
+      "dry",
+      "fx",
+      "decay",
+      "q",
+      "sens"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "MT-2W",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "level",
+      "dist",
+      "high",
+      "middle",
+      "midFreq",
+      "low",
+      "mode"
+    ]
+  },
+  {
+    "company": "Wampler",
+    "model": "Plexi-Drive",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "tone",
+      "gain",
+      "bassBoost"
+    ]
+  },
+  {
+    "company": "JHS",
+    "model": "Pulp N Peel",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "volume",
+      "comp",
+      "blend",
+      "eq",
+      "dirt"
+    ]
+  },
+  {
+    "company": "Source Audio",
+    "model": "Spectrum",
+    "type": "pedal",
+    "category": "filter",
+    "parameter": [
+      "inputLevel",
+      "depth",
+      "frequency",
+      "envelopeSpeed",
+      "sensitivity",
+      "mix",
+      "resonance",
+      "outputVolume"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "VB-2W",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "depth",
+      "riseTime",
+      "mode"
+    ]
   }
 ]

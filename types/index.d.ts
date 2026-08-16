@@ -103,6 +103,10 @@ export interface BossBrand {
   re20(): GearInfo;
   /** RV-500 — pedal · reverb */
   rv500(): GearInfo;
+  /** MT-2W — pedal · drive */
+  mt2w(): GearInfo;
+  /** VB-2W — pedal · modulation */
+  vb2w(): GearInfo;
 }
 
 /** Ibanez */
@@ -113,6 +117,8 @@ export interface IbanezBrand {
   ts9(): GearInfo;
   /** TS Mini — pedal · drive */
   ts_mini(): GearInfo;
+  /** TS7 — pedal · drive */
+  ts7(): GearInfo;
 }
 
 /** MXR */
@@ -137,6 +143,8 @@ export interface MxrBrand {
   m109_six_band_eq(): GearInfo;
   /** Micro Chorus — pedal · modulation */
   micro_chorus(): GearInfo;
+  /** M82 Bass Envelope Filter — pedal · filter */
+  m82_bass_envelope_filter(): GearInfo;
 }
 
 /** Electro-Harmonix */
@@ -167,6 +175,10 @@ export interface ElectroHarmonixBrand {
   bassballs(): GearInfo;
   /** Memory Boy — pedal · delay */
   memory_boy(): GearInfo;
+  /** Pitch Fork — pedal · pitch */
+  pitch_fork(): GearInfo;
+  /** Op-Amp Big Muff Pi — pedal · drive */
+  opamp_big_muff_pi(): GearInfo;
 }
 
 /** Klon */
@@ -207,6 +219,8 @@ export interface FulltoneBrand {
   ocd(): GearInfo;
   /** Full-Drive 2 — pedal · drive */
   fulldrive_2(): GearInfo;
+  /** Clyde Deluxe Wah — pedal · wah */
+  clyde_deluxe_wah(): GearInfo;
 }
 
 /** Roland */
@@ -1111,6 +1125,8 @@ export interface WamplerBrand {
   tumnus(): GearInfo;
   /** Ethereal — pedal · reverb */
   ethereal(): GearInfo;
+  /** Plexi-Drive — pedal · drive */
+  plexidrive(): GearInfo;
 }
 
 /** JHS */
@@ -1119,6 +1135,8 @@ export interface JhsBrand {
   morning_glory(): GearInfo;
   /** Angry Charlie — pedal · drive */
   angry_charlie(): GearInfo;
+  /** Pulp N Peel — pedal · comp */
+  pulp_n_peel(): GearInfo;
 }
 
 /** Origin Effects */
@@ -1131,6 +1149,18 @@ export interface OriginEffectsBrand {
 export interface OldBloodNoiseEndeavorsBrand {
   /** Dark Star — pedal · reverb */
   dark_star(): GearInfo;
+}
+
+/** Morley */
+export interface MorleyBrand {
+  /** Bad Horsie 2 — pedal · wah */
+  bad_horsie_2(): GearInfo;
+}
+
+/** Source Audio */
+export interface SourceAudioBrand {
+  /** Spectrum — pedal · filter */
+  spectrum(): GearInfo;
 }
 
 export declare class GuitarEffector {
@@ -1233,6 +1263,8 @@ export declare class GuitarEffector {
   jhs: JhsBrand;
   origineffects: OriginEffectsBrand;
   oldbloodnoiseendeavors: OldBloodNoiseEndeavorsBrand;
+  morley: MorleyBrand;
+  sourceaudio: SourceAudioBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];
