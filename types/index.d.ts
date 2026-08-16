@@ -73,6 +73,22 @@ export interface BossBrand {
   dd3(): GearInfo;
   /** DD-8 — pedal · delay */
   dd8(): GearInfo;
+  /** GE-7 — pedal · eq */
+  ge7(): GearInfo;
+  /** CH-1 — pedal · modulation */
+  ch1(): GearInfo;
+  /** TR-2 — pedal · modulation */
+  tr2(): GearInfo;
+  /** BF-2 — pedal · modulation */
+  bf2(): GearInfo;
+  /** PS-6 — pedal · pitch */
+  ps6(): GearInfo;
+  /** DS-2 — pedal · drive */
+  ds2(): GearInfo;
+  /** OD-3 — pedal · drive */
+  od3(): GearInfo;
+  /** AW-3 — pedal · filter */
+  aw3(): GearInfo;
 }
 
 /** Ibanez */
@@ -97,6 +113,10 @@ export interface MxrBrand {
   flanger(): GearInfo;
   /** Carbon Copy — pedal · delay */
   carbon_copy(): GearInfo;
+  /** M108 Ten Band EQ — pedal · eq */
+  m108_ten_band_eq(): GearInfo;
+  /** Phase 100 — pedal · modulation */
+  phase_100(): GearInfo;
 }
 
 /** Electro-Harmonix */
@@ -111,6 +131,20 @@ export interface ElectroHarmonixBrand {
   russian_big_muff_pi(): GearInfo;
   /** Holy Grail — pedal · reverb */
   holy_grail(): GearInfo;
+  /** Small Clone — pedal · modulation */
+  small_clone(): GearInfo;
+  /** Electric Mistress — pedal · modulation */
+  electric_mistress(): GearInfo;
+  /** Micro POG — pedal · pitch */
+  micro_pog(): GearInfo;
+  /** POG2 — pedal · pitch */
+  pog2(): GearInfo;
+  /** Soul Food — pedal · drive */
+  soul_food(): GearInfo;
+  /** Q-Tron — pedal · filter */
+  qtron(): GearInfo;
+  /** Bassballs — pedal · filter */
+  bassballs(): GearInfo;
 }
 
 /** Klon */
@@ -215,6 +249,8 @@ export interface VoxBrand {
   ac30tb_2x12_silver_alnico(): GearInfo;
   /** AC-30 2x12 Pre-Rola Greenback Pulsonic — cab · cab */
   ac30_2x12_prerola_greenback_pulsonic(): GearInfo;
+  /** V845 — pedal · wah */
+  v845(): GearInfo;
 }
 
 /** Marshall */
@@ -405,6 +441,8 @@ export interface HorizonDevicesBrand {
 export interface KeeleyBrand {
   /** Red Dirt — pedal · drive */
   red_dirt(): GearInfo;
+  /** Compressor Plus — pedal · comp */
+  compressor_plus(): GearInfo;
 }
 
 /** Vemuram */
@@ -1021,6 +1059,18 @@ export interface EmpressEffectsBrand {
   echosystem(): GearInfo;
 }
 
+/** Wampler */
+export interface WamplerBrand {
+  /** Ego Compressor — pedal · comp */
+  ego_compressor(): GearInfo;
+}
+
+/** JHS */
+export interface JhsBrand {
+  /** Morning Glory — pedal · drive */
+  morning_glory(): GearInfo;
+}
+
 export declare class GuitarEffector {
   proco: ProCoBrand;
   boss: BossBrand;
@@ -1117,6 +1167,8 @@ export declare class GuitarEffector {
   walrusaudio: WalrusAudioBrand;
   line6: Line6Brand;
   empresseffects: EmpressEffectsBrand;
+  wampler: WamplerBrand;
+  jhs: JhsBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];

@@ -3492,5 +3492,261 @@
       "thing1",
       "thing2"
     ]
+  },
+  {
+    "company": "Boss",
+    "model": "GE-7",
+    "type": "pedal",
+    "category": "eq",
+    "parameter": [
+      "band100hz",
+      "band200hz",
+      "band400hz",
+      "band800hz",
+      "band1600hz",
+      "band3200hz",
+      "band6400hz",
+      "level"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "M108 Ten Band EQ",
+    "type": "pedal",
+    "category": "eq",
+    "parameter": [
+      "gain",
+      "volume",
+      "band31hz",
+      "band62hz",
+      "band125hz",
+      "band250hz",
+      "band500hz",
+      "band1khz",
+      "band2khz",
+      "band4khz",
+      "band8khz",
+      "band16khz"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "CH-1",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "eLevel",
+      "eq",
+      "rate",
+      "depth"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Small Clone",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "depth"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Electric Mistress",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "range",
+      "color",
+      "filterMatrix"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "TR-2",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "depth",
+      "wave"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "BF-2",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "manual",
+      "depth",
+      "rate",
+      "resonance"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "Phase 100",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "speed",
+      "intensity"
+    ]
+  },
+  {
+    "company": "Keeley",
+    "model": "Compressor Plus",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "level",
+      "sustain",
+      "blend",
+      "tone"
+    ]
+  },
+  {
+    "company": "Wampler",
+    "model": "Ego Compressor",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "volume",
+      "sustain",
+      "attack",
+      "tone",
+      "blend"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Micro POG",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "dry",
+      "subOctave",
+      "octaveUp"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "POG2",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "dry",
+      "octaveDown2",
+      "octaveDown1",
+      "octaveUp1",
+      "octaveUp2",
+      "attack",
+      "lowPassFilter",
+      "detune"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "PS-6",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "balance",
+      "shift",
+      "key",
+      "mode"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "DS-2",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "level",
+      "tone",
+      "dist",
+      "turbo"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "OD-3",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "level",
+      "tone",
+      "drive"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Soul Food",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "drive",
+      "volume",
+      "treble"
+    ]
+  },
+  {
+    "company": "JHS",
+    "model": "Morning Glory",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "drive",
+      "tone",
+      "brightCut"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Q-Tron",
+    "type": "pedal",
+    "category": "filter",
+    "parameter": [
+      "drive",
+      "q",
+      "mode"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Bassballs",
+    "type": "pedal",
+    "category": "filter",
+    "parameter": [
+      "response",
+      "distortion"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "AW-3",
+    "type": "pedal",
+    "category": "filter",
+    "parameter": [
+      "rate",
+      "depth",
+      "manual",
+      "sens",
+      "mode"
+    ]
+  },
+  {
+    "company": "Vox",
+    "model": "V845",
+    "type": "pedal",
+    "category": "wah",
+    "parameter": [
+      "sweep"
+    ]
   }
 ]
