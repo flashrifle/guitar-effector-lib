@@ -107,6 +107,12 @@ export interface BossBrand {
   mt2w(): GearInfo;
   /** VB-2W — pedal · modulation */
   vb2w(): GearInfo;
+  /** CS-2 — pedal · comp */
+  cs2(): GearInfo;
+  /** DM-2W — pedal · delay */
+  dm2w(): GearInfo;
+  /** FV-500H — pedal · volume */
+  fv500h(): GearInfo;
 }
 
 /** Ibanez */
@@ -179,6 +185,8 @@ export interface ElectroHarmonixBrand {
   pitch_fork(): GearInfo;
   /** Op-Amp Big Muff Pi — pedal · drive */
   opamp_big_muff_pi(): GearInfo;
+  /** Bass Big Muff Pi — pedal · drive */
+  bass_big_muff_pi(): GearInfo;
 }
 
 /** Klon */
@@ -211,6 +219,10 @@ export interface WayHugeBrand {
   green_rhino(): GearInfo;
   /** Red Llama — pedal · drive */
   red_llama(): GearInfo;
+  /** Aqua-Puss — pedal · delay */
+  aquapuss(): GearInfo;
+  /** Swollen Pickle — pedal · drive */
+  swollen_pickle(): GearInfo;
 }
 
 /** Fulltone */
@@ -1089,6 +1101,8 @@ export interface StrymonBrand {
   el_capistan(): GearInfo;
   /** Mobius — pedal · modulation */
   mobius(): GearInfo;
+  /** Deco — pedal · modulation */
+  deco(): GearInfo;
 }
 
 /** Walrus Audio */
@@ -1161,6 +1175,24 @@ export interface MorleyBrand {
 export interface SourceAudioBrand {
   /** Spectrum — pedal · filter */
   spectrum(): GearInfo;
+}
+
+/** Ross */
+export interface RossBrand {
+  /** Compressor — pedal · comp */
+  compressor(): GearInfo;
+}
+
+/** Death By Audio */
+export interface DeathByAudioBrand {
+  /** Fuzz War — pedal · drive */
+  fuzz_war(): GearInfo;
+}
+
+/** Ernie Ball */
+export interface ErnieBallBrand {
+  /** VP Jr — pedal · volume */
+  vp_jr(): GearInfo;
 }
 
 export declare class GuitarEffector {
@@ -1265,6 +1297,9 @@ export declare class GuitarEffector {
   oldbloodnoiseendeavors: OldBloodNoiseEndeavorsBrand;
   morley: MorleyBrand;
   sourceaudio: SourceAudioBrand;
+  ross: RossBrand;
+  deathbyaudio: DeathByAudioBrand;
+  ernieball: ErnieBallBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];

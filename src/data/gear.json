@@ -4231,5 +4231,118 @@
       "riseTime",
       "mode"
     ]
+  },
+  {
+    "company": "Boss",
+    "model": "CS-2",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "level",
+      "attack",
+      "sustain"
+    ]
+  },
+  {
+    "company": "Ross",
+    "model": "Compressor",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "level",
+      "sustain"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "Deco",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "saturation",
+      "volume",
+      "lagTime",
+      "blend",
+      "wobble"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "DM-2W",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "repeatRate",
+      "intensity",
+      "echo",
+      "mode"
+    ]
+  },
+  {
+    "company": "Way Huge",
+    "model": "Aqua-Puss",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "delay",
+      "feedback",
+      "blend"
+    ]
+  },
+  {
+    "company": "Way Huge",
+    "model": "Swollen Pickle",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "loudness",
+      "filter",
+      "sustain",
+      "scoop",
+      "crunch"
+    ]
+  },
+  {
+    "company": "Death By Audio",
+    "model": "Fuzz War",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "fuzz",
+      "tone"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Bass Big Muff Pi",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "tone",
+      "sustain",
+      "dry"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "FV-500H",
+    "type": "pedal",
+    "category": "volume",
+    "parameter": [
+      "volume",
+      "minimumVolume"
+    ]
+  },
+  {
+    "company": "Ernie Ball",
+    "model": "VP Jr",
+    "type": "pedal",
+    "category": "volume",
+    "parameter": [
+      "volume",
+      "microTaper"
+    ]
   }
 ]
