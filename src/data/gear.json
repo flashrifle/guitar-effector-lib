@@ -3748,5 +3748,152 @@
     "parameter": [
       "sweep"
     ]
+  },
+  {
+    "company": "Empress Effects",
+    "model": "ParaEq",
+    "type": "pedal",
+    "category": "eq",
+    "parameter": [
+      "lowGain",
+      "lowFreq",
+      "lowQ",
+      "midGain",
+      "midFreq",
+      "midQ",
+      "highGain",
+      "highFreq",
+      "highQ"
+    ]
+  },
+  {
+    "company": "Origin Effects",
+    "model": "Cali76 Compact Deluxe",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "in",
+      "out",
+      "dry",
+      "ratio",
+      "attack",
+      "release"
+    ]
+  },
+  {
+    "company": "Walrus Audio",
+    "model": "Deep Six",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "level",
+      "sustain",
+      "attack",
+      "blend",
+      "tone"
+    ]
+  },
+  {
+    "company": "TC Electronic",
+    "model": "HyperGravity",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "sustain",
+      "attack",
+      "level",
+      "blend"
+    ]
+  },
+  {
+    "company": "Wampler",
+    "model": "Tumnus",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "gain",
+      "treble"
+    ]
+  },
+  {
+    "company": "Pro Co",
+    "model": "Turbo RAT",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "distortion",
+      "filter",
+      "volume"
+    ]
+  },
+  {
+    "company": "Ibanez",
+    "model": "TS Mini",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "overdrive",
+      "tone",
+      "level"
+    ]
+  },
+  {
+    "company": "Klon",
+    "model": "KTR",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "gain",
+      "treble",
+      "output"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "PH-3",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "depth",
+      "res",
+      "stage"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "CE-5",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "eLevel",
+      "rate",
+      "depth",
+      "filter"
+    ]
+  },
+  {
+    "company": "TC Electronic",
+    "model": "Corona Chorus",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "speed",
+      "depth",
+      "tone",
+      "fxLevel"
+    ]
+  },
+  {
+    "company": "Dunlop",
+    "model": "Rotovibe",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "intensity",
+      "rate",
+      "mode"
+    ]
   }
 ]

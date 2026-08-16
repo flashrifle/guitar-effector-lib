@@ -31,6 +31,8 @@ export declare const gear: readonly Readonly<GearInfo>[];
 export interface ProCoBrand {
   /** RAT2 — pedal · drive */
   rat2(): GearInfo;
+  /** Turbo RAT — pedal · drive */
+  turbo_rat(): GearInfo;
 }
 
 /** Boss */
@@ -89,6 +91,10 @@ export interface BossBrand {
   od3(): GearInfo;
   /** AW-3 — pedal · filter */
   aw3(): GearInfo;
+  /** PH-3 — pedal · modulation */
+  ph3(): GearInfo;
+  /** CE-5 — pedal · modulation */
+  ce5(): GearInfo;
 }
 
 /** Ibanez */
@@ -97,6 +103,8 @@ export interface IbanezBrand {
   ts808(): GearInfo;
   /** TS9 — pedal · drive */
   ts9(): GearInfo;
+  /** TS Mini — pedal · drive */
+  ts_mini(): GearInfo;
 }
 
 /** MXR */
@@ -151,6 +159,8 @@ export interface ElectroHarmonixBrand {
 export interface KlonBrand {
   /** Centaur — pedal · drive */
   centaur(): GearInfo;
+  /** KTR — pedal · drive */
+  ktr(): GearInfo;
 }
 
 /** Dunlop */
@@ -165,6 +175,8 @@ export interface DunlopBrand {
   _105q_bass_wah(): GearInfo;
   /** Cry Baby Clyde McCoy — pedal · wah */
   cry_baby_clyde_mccoy(): GearInfo;
+  /** Rotovibe — pedal · modulation */
+  rotovibe(): GearInfo;
 }
 
 /** Way Huge */
@@ -1027,6 +1039,10 @@ export interface TcElectronicBrand {
   hall_of_fame_2(): GearInfo;
   /** Flashback 2 — pedal · delay */
   flashback_2(): GearInfo;
+  /** HyperGravity — pedal · comp */
+  hypergravity(): GearInfo;
+  /** Corona Chorus — pedal · modulation */
+  corona_chorus(): GearInfo;
 }
 
 /** Strymon */
@@ -1045,6 +1061,8 @@ export interface StrymonBrand {
 export interface WalrusAudioBrand {
   /** Slö — pedal · reverb */
   slo(): GearInfo;
+  /** Deep Six — pedal · comp */
+  deep_six(): GearInfo;
 }
 
 /** Line 6 */
@@ -1057,18 +1075,28 @@ export interface Line6Brand {
 export interface EmpressEffectsBrand {
   /** Echosystem — pedal · delay */
   echosystem(): GearInfo;
+  /** ParaEq — pedal · eq */
+  paraeq(): GearInfo;
 }
 
 /** Wampler */
 export interface WamplerBrand {
   /** Ego Compressor — pedal · comp */
   ego_compressor(): GearInfo;
+  /** Tumnus — pedal · drive */
+  tumnus(): GearInfo;
 }
 
 /** JHS */
 export interface JhsBrand {
   /** Morning Glory — pedal · drive */
   morning_glory(): GearInfo;
+}
+
+/** Origin Effects */
+export interface OriginEffectsBrand {
+  /** Cali76 Compact Deluxe — pedal · comp */
+  cali76_compact_deluxe(): GearInfo;
 }
 
 export declare class GuitarEffector {
@@ -1169,6 +1197,7 @@ export declare class GuitarEffector {
   empresseffects: EmpressEffectsBrand;
   wampler: WamplerBrand;
   jhs: JhsBrand;
+  origineffects: OriginEffectsBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];
