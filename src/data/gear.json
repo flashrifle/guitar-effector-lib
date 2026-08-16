@@ -3273,5 +3273,224 @@
     "type": "cab",
     "category": "cab",
     "parameter": []
+  },
+  {
+    "company": "Boss",
+    "model": "RV-6",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "eLevel",
+      "tone",
+      "time",
+      "mode"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Holy Grail",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "blend",
+      "time",
+      "mode"
+    ]
+  },
+  {
+    "company": "TC Electronic",
+    "model": "Hall of Fame 2",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "decay",
+      "tone",
+      "level",
+      "preDelay",
+      "type",
+      "feedback"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "blueSky",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "decay",
+      "mix",
+      "preDelay",
+      "lowDamp",
+      "highDamp",
+      "mod"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "Flint",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "decay",
+      "color",
+      "mix",
+      "intensity",
+      "speed"
+    ]
+  },
+  {
+    "company": "Digitech",
+    "model": "Polara",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "level",
+      "liveliness",
+      "decay",
+      "type"
+    ]
+  },
+  {
+    "company": "Earthquaker Devices",
+    "model": "Afterneath",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "length",
+      "diffuse",
+      "dampen",
+      "drag",
+      "reflect",
+      "mix"
+    ]
+  },
+  {
+    "company": "Walrus Audio",
+    "model": "Slö",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "decay",
+      "filter",
+      "mix",
+      "depth",
+      "x"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "DD-3",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "eLevel",
+      "feedback",
+      "delayTime",
+      "mode"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "DD-8",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "eLevel",
+      "feedback",
+      "time",
+      "mode"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "Carbon Copy",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "delay",
+      "mix",
+      "regen",
+      "modulation"
+    ]
+  },
+  {
+    "company": "TC Electronic",
+    "model": "Flashback 2",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "delay",
+      "feedback",
+      "level",
+      "subdivision"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "TimeLine",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "time",
+      "repeats",
+      "mix",
+      "filter",
+      "grit",
+      "modSpeed",
+      "modDepth"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "El Capistan",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "time",
+      "mix",
+      "repeats",
+      "tapeAge",
+      "wowAndFlutter"
+    ]
+  },
+  {
+    "company": "Line 6",
+    "model": "DL4",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "delayTime",
+      "repeats",
+      "tweak",
+      "tweez",
+      "mix"
+    ]
+  },
+  {
+    "company": "Earthquaker Devices",
+    "model": "Dispatch Master",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "time",
+      "repeats",
+      "reverb",
+      "mix"
+    ]
+  },
+  {
+    "company": "Empress Effects",
+    "model": "Echosystem",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "mix",
+      "output",
+      "delayTime",
+      "feedback",
+      "tone",
+      "thing1",
+      "thing2"
+    ]
   }
 ]

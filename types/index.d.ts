@@ -67,6 +67,12 @@ export interface BossBrand {
   ce2w(): GearInfo;
   /** FA-1 FET Amplifier — pedal · drive */
   fa1_fet_amplifier(): GearInfo;
+  /** RV-6 — pedal · reverb */
+  rv6(): GearInfo;
+  /** DD-3 — pedal · delay */
+  dd3(): GearInfo;
+  /** DD-8 — pedal · delay */
+  dd8(): GearInfo;
 }
 
 /** Ibanez */
@@ -89,6 +95,8 @@ export interface MxrBrand {
   micro_amp(): GearInfo;
   /** Flanger — pedal · modulation */
   flanger(): GearInfo;
+  /** Carbon Copy — pedal · delay */
+  carbon_copy(): GearInfo;
 }
 
 /** Electro-Harmonix */
@@ -101,6 +109,8 @@ export interface ElectroHarmonixBrand {
   deluxe_memory_man(): GearInfo;
   /** Russian Big Muff Pi — pedal · drive */
   russian_big_muff_pi(): GearInfo;
+  /** Holy Grail — pedal · reverb */
+  holy_grail(): GearInfo;
 }
 
 /** Klon */
@@ -309,6 +319,10 @@ export interface Tech21Brand {
 export interface EarthquakerDevicesBrand {
   /** Plumes — pedal · drive */
   plumes(): GearInfo;
+  /** Afterneath — pedal · reverb */
+  afterneath(): GearInfo;
+  /** Dispatch Master — pedal · delay */
+  dispatch_master(): GearInfo;
 }
 
 /** Nobels */
@@ -429,6 +443,8 @@ export interface AmpegBrand {
 export interface DigitechBrand {
   /** Whammy — pedal · pitch */
   whammy(): GearInfo;
+  /** Polara — pedal · reverb */
+  polara(): GearInfo;
 }
 
 /** Moog */
@@ -967,6 +983,44 @@ export interface EdenBrand {
   d410xlt_4x10(): GearInfo;
 }
 
+/** TC Electronic */
+export interface TcElectronicBrand {
+  /** Hall of Fame 2 — pedal · reverb */
+  hall_of_fame_2(): GearInfo;
+  /** Flashback 2 — pedal · delay */
+  flashback_2(): GearInfo;
+}
+
+/** Strymon */
+export interface StrymonBrand {
+  /** blueSky — pedal · reverb */
+  bluesky(): GearInfo;
+  /** Flint — pedal · reverb */
+  flint(): GearInfo;
+  /** TimeLine — pedal · delay */
+  timeline(): GearInfo;
+  /** El Capistan — pedal · delay */
+  el_capistan(): GearInfo;
+}
+
+/** Walrus Audio */
+export interface WalrusAudioBrand {
+  /** Slö — pedal · reverb */
+  slo(): GearInfo;
+}
+
+/** Line 6 */
+export interface Line6Brand {
+  /** DL4 — pedal · delay */
+  dl4(): GearInfo;
+}
+
+/** Empress Effects */
+export interface EmpressEffectsBrand {
+  /** Echosystem — pedal · delay */
+  echosystem(): GearInfo;
+}
+
 export declare class GuitarEffector {
   proco: ProCoBrand;
   boss: BossBrand;
@@ -1058,6 +1112,11 @@ export declare class GuitarEffector {
   zilla: ZillaBrand;
   epifani: EpifaniBrand;
   eden: EdenBrand;
+  tcelectronic: TcElectronicBrand;
+  strymon: StrymonBrand;
+  walrusaudio: WalrusAudioBrand;
+  line6: Line6Brand;
+  empresseffects: EmpressEffectsBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];
