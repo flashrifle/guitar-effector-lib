@@ -3895,5 +3895,201 @@
       "rate",
       "mode"
     ]
+  },
+  {
+    "company": "JHS",
+    "model": "Angry Charlie",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "volume",
+      "drive",
+      "bass",
+      "mids",
+      "treble"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "BD-2W",
+    "type": "pedal",
+    "category": "drive",
+    "parameter": [
+      "level",
+      "tone",
+      "gain",
+      "mode"
+    ]
+  },
+  {
+    "company": "Digitech",
+    "model": "Drop",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "amount",
+      "momentary"
+    ]
+  },
+  {
+    "company": "TC Electronic",
+    "model": "Sub N Up",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "dry",
+      "up",
+      "sub1",
+      "sub2"
+    ]
+  },
+  {
+    "company": "Empress Effects",
+    "model": "Compressor MKII",
+    "type": "pedal",
+    "category": "comp",
+    "parameter": [
+      "input",
+      "output",
+      "attack",
+      "release",
+      "mix",
+      "tone",
+      "ratio",
+      "sidechainHpf"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "M109 Six Band EQ",
+    "type": "pedal",
+    "category": "eq",
+    "parameter": [
+      "band100hz",
+      "band200hz",
+      "band400hz",
+      "band800hz",
+      "band1600hz",
+      "band3200hz"
+    ]
+  },
+  {
+    "company": "MXR",
+    "model": "Micro Chorus",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "OC-5",
+    "type": "pedal",
+    "category": "pitch",
+    "parameter": [
+      "directLevel",
+      "octaveUp1",
+      "octaveDown1",
+      "octaveDown2Range",
+      "mode"
+    ]
+  },
+  {
+    "company": "Strymon",
+    "model": "Mobius",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "type",
+      "value",
+      "speed",
+      "depth",
+      "level",
+      "param1",
+      "param2"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "RE-20",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "inputVolume",
+      "mode",
+      "echoVolume",
+      "intensity",
+      "repeatRate",
+      "bass",
+      "treble",
+      "reverbVolume"
+    ]
+  },
+  {
+    "company": "Electro-Harmonix",
+    "model": "Memory Boy",
+    "type": "pedal",
+    "category": "delay",
+    "parameter": [
+      "blend",
+      "feedback",
+      "delay",
+      "depth",
+      "rate"
+    ]
+  },
+  {
+    "company": "Walrus Audio",
+    "model": "Julianna",
+    "type": "pedal",
+    "category": "modulation",
+    "parameter": [
+      "rate",
+      "depth",
+      "lag",
+      "dcv"
+    ]
+  },
+  {
+    "company": "Wampler",
+    "model": "Ethereal",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "feedback",
+      "tone",
+      "delayMix",
+      "reverbMix",
+      "delay",
+      "delayMode"
+    ]
+  },
+  {
+    "company": "Boss",
+    "model": "RV-500",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "time",
+      "preDelay",
+      "fxLevel",
+      "lowEq",
+      "highEq",
+      "mode"
+    ]
+  },
+  {
+    "company": "Old Blood Noise Endeavors",
+    "model": "Dark Star",
+    "type": "pedal",
+    "category": "reverb",
+    "parameter": [
+      "mix",
+      "reverb",
+      "ctrl1",
+      "ctrl2",
+      "mode"
+    ]
   }
 ]

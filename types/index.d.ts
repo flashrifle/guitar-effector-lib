@@ -95,6 +95,14 @@ export interface BossBrand {
   ph3(): GearInfo;
   /** CE-5 — pedal · modulation */
   ce5(): GearInfo;
+  /** BD-2W — pedal · drive */
+  bd2w(): GearInfo;
+  /** OC-5 — pedal · pitch */
+  oc5(): GearInfo;
+  /** RE-20 — pedal · delay */
+  re20(): GearInfo;
+  /** RV-500 — pedal · reverb */
+  rv500(): GearInfo;
 }
 
 /** Ibanez */
@@ -125,6 +133,10 @@ export interface MxrBrand {
   m108_ten_band_eq(): GearInfo;
   /** Phase 100 — pedal · modulation */
   phase_100(): GearInfo;
+  /** M109 Six Band EQ — pedal · eq */
+  m109_six_band_eq(): GearInfo;
+  /** Micro Chorus — pedal · modulation */
+  micro_chorus(): GearInfo;
 }
 
 /** Electro-Harmonix */
@@ -153,6 +165,8 @@ export interface ElectroHarmonixBrand {
   qtron(): GearInfo;
   /** Bassballs — pedal · filter */
   bassballs(): GearInfo;
+  /** Memory Boy — pedal · delay */
+  memory_boy(): GearInfo;
 }
 
 /** Klon */
@@ -495,6 +509,8 @@ export interface DigitechBrand {
   whammy(): GearInfo;
   /** Polara — pedal · reverb */
   polara(): GearInfo;
+  /** Drop — pedal · pitch */
+  drop(): GearInfo;
 }
 
 /** Moog */
@@ -1043,6 +1059,8 @@ export interface TcElectronicBrand {
   hypergravity(): GearInfo;
   /** Corona Chorus — pedal · modulation */
   corona_chorus(): GearInfo;
+  /** Sub N Up — pedal · pitch */
+  sub_n_up(): GearInfo;
 }
 
 /** Strymon */
@@ -1055,6 +1073,8 @@ export interface StrymonBrand {
   timeline(): GearInfo;
   /** El Capistan — pedal · delay */
   el_capistan(): GearInfo;
+  /** Mobius — pedal · modulation */
+  mobius(): GearInfo;
 }
 
 /** Walrus Audio */
@@ -1063,6 +1083,8 @@ export interface WalrusAudioBrand {
   slo(): GearInfo;
   /** Deep Six — pedal · comp */
   deep_six(): GearInfo;
+  /** Julianna — pedal · modulation */
+  julianna(): GearInfo;
 }
 
 /** Line 6 */
@@ -1077,6 +1099,8 @@ export interface EmpressEffectsBrand {
   echosystem(): GearInfo;
   /** ParaEq — pedal · eq */
   paraeq(): GearInfo;
+  /** Compressor MKII — pedal · comp */
+  compressor_mkii(): GearInfo;
 }
 
 /** Wampler */
@@ -1085,18 +1109,28 @@ export interface WamplerBrand {
   ego_compressor(): GearInfo;
   /** Tumnus — pedal · drive */
   tumnus(): GearInfo;
+  /** Ethereal — pedal · reverb */
+  ethereal(): GearInfo;
 }
 
 /** JHS */
 export interface JhsBrand {
   /** Morning Glory — pedal · drive */
   morning_glory(): GearInfo;
+  /** Angry Charlie — pedal · drive */
+  angry_charlie(): GearInfo;
 }
 
 /** Origin Effects */
 export interface OriginEffectsBrand {
   /** Cali76 Compact Deluxe — pedal · comp */
   cali76_compact_deluxe(): GearInfo;
+}
+
+/** Old Blood Noise Endeavors */
+export interface OldBloodNoiseEndeavorsBrand {
+  /** Dark Star — pedal · reverb */
+  dark_star(): GearInfo;
 }
 
 export declare class GuitarEffector {
@@ -1198,6 +1232,7 @@ export declare class GuitarEffector {
   wampler: WamplerBrand;
   jhs: JhsBrand;
   origineffects: OriginEffectsBrand;
+  oldbloodnoiseendeavors: OldBloodNoiseEndeavorsBrand;
 
   listCompanies(): string[];
   listModels(companyKey: string): string[];
